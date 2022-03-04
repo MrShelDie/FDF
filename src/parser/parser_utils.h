@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:49:39 by nick              #+#    #+#             */
-/*   Updated: 2022/03/04 23:34:29 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/05 00:14:08 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define PARSER_UTILS_H
 
 # include <fcntl.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 # include "def.h"
 # include "libft.h"

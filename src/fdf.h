@@ -6,14 +6,12 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:47:07 by nick              #+#    #+#             */
-/*   Updated: 2022/03/04 23:43:14 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/05 00:08:35 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-
-# include <stdlib.h>
 
 # include "def.h"
 # include "libft.h"
