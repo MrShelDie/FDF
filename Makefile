@@ -1,5 +1,5 @@
 _SRC_		= main.c			matrix.c
-_PARS_		= parser.c			parser_utils.c
+_PARS_		= parser.c			parser_utils_check.c	parser_utils_fill.c
 _GNL_		= get_next_line.c	get_next_line_utils.c
 
 SRC			= $(addprefix src/, $(_SRC_))

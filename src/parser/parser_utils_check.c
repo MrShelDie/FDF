@@ -1,72 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_utils.c                                     :+:      :+:    :+:   */
+/*   parser_utils_check.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:36:32 by nick              #+#    #+#             */
-/*   Updated: 2022/03/05 15:06:02 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/05 17:44:44 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
 #include <stdlib.h>
-#include <unistd.h>
 
 #include "def.h"
 #include "libft.h"
-#include "get_next_line.h"
 #include "parser_utils.h"
+#include "get_next_line.h"
 
-int	get_matrix_height(const char *file_name)
-{
-	int		fd;
-	int		height;
-	char	*line;
-
-	fd = open(file_name, O_RDONLY);
-	if (fd == -1)
-		return (-1);
-	line = get_next_line(fd, TRUE);
-	height = 0;
-	while (line)
-	{
-		height++;
-		free(line);
-		line = get_next_line(fd, FALSE);
-	}
-	close(fd);
-	return (height);
-}
-
-int	get_matrix_width(const char *file_name)
-{
-	int		fd;
-	int		width;
-	char	*line;
-	char	**tokens;
-
-	fd = open(file_name, O_RDONLY);
-	if (fd == -1)
-		return (0);
-	line = get_next_line(fd, TRUE);
-	tokens = ft_split(line, ' ');
-	if (tokens)
-	{
-		width = 0;
-		while (tokens[width] && tokens[width][0] != '\n')
-			width++;
-	}
-	close(fd);
-	if (line)
-		free(line);
-	if (tokens)
-		ft_free_split(tokens);
-	return (width);
-}
-
-int	is_color(const char *token)
+static int	is_color(const char *token)
 {
 	int	i;
 
@@ -86,10 +37,15 @@ int	is_color(const char *token)
 	return (i <= COLOR_STR_SIZE);
 }
 
-int	is_number(const char *token)
+static int	is_number(const char *token)
 {
 	int	i;
+	int	error;
 
+	error = 0;
+	ft_atoi(token, &error);
+	if (error)
+		return (FALSE);
 	i = 0;
 	if (token[0] == '-')
 		i++;
@@ -133,25 +89,4 @@ int	check_line(int fd, int row_nb, int width)
 	if (tokens)
 		ft_free_split(tokens);
 	return (!was_not_number_met && col_nb == width);
-}
-
-int	check_map(const char *file_name, int height, int width)
-{
-	int	fd;
-	int	row_nb;
-
-	fd = open(file_name, O_RDONLY);
-	if (fd == -1)
-		return (ERROR);
-	row_nb = -1;
-	while (++row_nb < height)
-	{
-		if (!check_line(fd, row_nb, width))
-		{
-			close(fd);
-			return (ERROR);
-		}
-	}
-	close(fd);
-	return (SUCCESS);
 }

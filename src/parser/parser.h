@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 23:29:21 by nick              #+#    #+#             */
-/*   Updated: 2022/03/05 13:57:52 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/05 17:30:41 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 # include "def.h"
 
-int		parse(t_fdf *fdf, const char *file_name);
+int	parse(t_fdf *fdf, const char *file_name);
 
 #endif

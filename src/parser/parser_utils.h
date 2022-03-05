@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:49:39 by nick              #+#    #+#             */
-/*   Updated: 2022/03/05 14:34:48 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/05 17:38:36 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 
 # define COLOR_STR_SIZE 8
 
-int	get_matrix_height(const char *file_name);
-int	get_matrix_width(const char *file_name);
-int	is_number(const char *token);
-int	check_line(int fd, int row_nb, int width);
-int	check_map(const char *file_name, int height, int width);
+int		check_line(int fd, int row_nb, int width);
+int		fill_line(t_point **matrix, int width, int fd, int row_nb);
 
 #endif

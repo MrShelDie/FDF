@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/03 15:46:55 by nick              #+#    #+#             */
-/*   Updated: 2022/03/05 15:11:49 by nick             ###   ########.fr       */
+/*   Created: 2022/03/05 17:25:34 by nick              #+#    #+#             */
+/*   Updated: 2022/03/05 17:45:31 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,63 +21,71 @@
 #include "parser_utils.h"
 #include "get_next_line.h"
 
-static int	get_color(const char *token)
+static int	get_matrix_height(const char *file_name)
 {
-	int				i;
-	unsigned int	color;
+	int		fd;
+	int		height;
+	char	*line;
 
-	i = 0;
-	while (ft_isdigit(token[i]) && token[i] && token[i] != '\n')
-		i++;
-	if (!token[i] || token[i] == '\n')
-		return (UNDEF_COLOR);
-	i += 3;
-	color = 0x000000;
-	while (token[i] && token[i] != '\n')
+	fd = open(file_name, O_RDONLY);
+	if (fd == -1)
+		return (-1);
+	line = get_next_line(fd, TRUE);
+	height = 0;
+	while (line)
 	{
-		color *= 16;
-		if (token[i] >= '0' && token[i] <= '9')
-			color += token[i] - '0';
-		else if (token[i] >= 'a' && token[i] <= 'f')
-			color += token[i] - 'a' + 10;
-		else
-			color += token[i] - 'A' + 10;
-		i++;
+		height++;
+		free(line);
+		line = get_next_line(fd, FALSE);
 	}
-	return (color);
+	close(fd);
+	return (height);
 }
 
-static void	fill_point(
-	t_point *point, int row_nb, int col_nb, const char *token)
+static int	get_matrix_width(const char *file_name)
 {
-	point->x = (float)col_nb;
-	point->y = (float)row_nb;
-	point->z = (float)ft_atoi(token);
-	point->color = get_color(token);
-}
-
-static int	fill_line(t_point **matrix, int width, int fd, int row_nb)
-{
-	int		col_nb;
+	int		fd;
+	int		width;
 	char	*line;
 	char	**tokens;
 
-	if (row_nb == 0)
-		line = get_next_line(fd, TRUE);
-	else
-		line = get_next_line(fd, FALSE);
+	fd = open(file_name, O_RDONLY);
+	if (fd == -1)
+		return (0);
+	line = get_next_line(fd, TRUE);
 	tokens = ft_split(line, ' ');
-	if (!tokens)
+	if (tokens)
 	{
-		if (line)
-			free(line);
-		return (ERROR);
+		width = 0;
+		while (tokens[width] && tokens[width][0] != '\n')
+			width++;
 	}
-	col_nb = -1;
-	while (++col_nb < width)
-		fill_point(&matrix[row_nb][col_nb], row_nb, col_nb, tokens[col_nb]);
-	free(line);
-	ft_free_split(tokens);
+	close(fd);
+	if (line)
+		free(line);
+	if (tokens)
+		ft_free_split(tokens);
+	return (width);
+}
+
+static int	check_map(const char *file_name, int height, int width)
+{
+	int	fd;
+	int	row_nb;
+
+	fd = open(file_name, O_RDONLY);
+	if (fd == -1)
+		return (ERROR);
+	row_nb = -1;
+	while (++row_nb < height)
+	{
+		if (!check_line(fd, row_nb, width))
+		{
+			close(fd);
+			return (ERROR);
+		}
+	}
+	close(fd);
 	return (SUCCESS);
 }
 

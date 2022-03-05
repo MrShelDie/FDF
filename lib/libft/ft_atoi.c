@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gannemar <gannemar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 12:34:29 by gannemar          #+#    #+#             */
-/*   Updated: 2021/10/15 19:40:28 by gannemar         ###   ########.fr       */
+/*   Updated: 2022/03/05 17:11:30 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "limits.h"
 
 static void	ft_skip_spaces(const char **str)
 {
@@ -45,7 +46,7 @@ static long int	ft_str_to_num(const char **str, int *ndigit)
 	return (num);
 }
 
-int	ft_atoi(const char *str)
+int	ft_atoi(const char *str, int *error)
 {
 	int			is_neg;
 	int			ndigit;
@@ -57,11 +58,10 @@ int	ft_atoi(const char *str)
 	ft_skip_spaces(&str);
 	is_neg = ft_get_sign(&str);
 	num = ft_str_to_num(&str, &ndigit);
-	if (ndigit > 19)
+	if (error)
 	{
-		if (is_neg)
-			return (0);
-		return (-1);
+		if (ndigit > 10 || num > (long int)is_neg + INT_MAX)
+			*error = 1;
 	}
 	if (is_neg)
 		num *= -1;
