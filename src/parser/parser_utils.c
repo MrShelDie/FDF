@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:36:32 by nick              #+#    #+#             */
-/*   Updated: 2022/03/04 23:37:05 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/05 13:34:21 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	get_matrix_width(const char *file_name)
 	if (tokens)
 	{
 		width = 0;
-		while (tokens[width])
+		while (tokens[width] && tokens[width][0] != '\n')
 			width++;
 	}
 	close(fd);
@@ -63,11 +63,14 @@ int	is_number(const char *token)
 {
 	int	i;
 
-	i = -1;
-	while (token[++i])
+	i = 0;
+	if (token[0] == '-')
+		i++;
+	while (token[i])
 	{
-		if (!ft_isdigit(token[i]) && (token[i] != '\n' || i == 0))
+		if (!ft_isdigit(token[i]) && token[i] != '\n')
 			return (ERROR);
+		i++;
 	}
 	return (SUCCESS);
 }
@@ -87,7 +90,7 @@ int	check_line(int fd, int row_nb, int width)
 	if (tokens)
 	{
 		col_nb = 0;
-		while (tokens[col_nb])
+		while (tokens[col_nb] && tokens[col_nb][0] != '\n')
 		{
 			if (!is_number(tokens[col_nb]))
 				was_not_number_met = TRUE;
