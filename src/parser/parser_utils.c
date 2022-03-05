@@ -6,10 +6,17 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:36:32 by nick              #+#    #+#             */
-/*   Updated: 2022/03/05 13:34:21 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/05 14:01:41 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <fcntl.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+#include "def.h"
+#include "libft.h"
+#include "get_next_line.h"
 #include "parser_utils.h"
 
 int	get_matrix_height(const char *file_name)

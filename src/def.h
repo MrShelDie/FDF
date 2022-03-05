@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:59:50 by nick              #+#    #+#             */
-/*   Updated: 2022/03/04 23:27:20 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/05 13:42:28 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@
 
 typedef struct s_point
 {
-	float	x;
-	float	y;
-	float	z;
+	float			x;
+	float			y;
+	float			z;
+	unsigned int	color;
+	int				is_color_default;
 }	t_point;
 
 typedef struct s_fdf

@@ -1,4 +1,4 @@
-_SRC_		= fdf.c
+_SRC_		= main.c			matrix.c
 _PARS_		= parser.c			parser_utils.c
 _GNL_		= get_next_line.c	get_next_line_utils.c
 

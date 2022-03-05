@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:24:33 by nick              #+#    #+#             */
-/*   Updated: 2022/03/04 23:42:58 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/05 13:55:13 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // TODO DELETE
 #include <stdio.h>
 
-#include "fdf.h"
+#include "def.h"
+#include "libft.h"
+#include "parser.h"
+#include "matrix.h"
 
 static int	check_args(int argc, char **argv)
 {
