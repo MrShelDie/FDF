@@ -31,7 +31,6 @@ INCL		= -I.
 
 %.o:	%.c ${HEDR}
 	gcc -c ${CFLSGS} ${INCL} $< -o $@
-
 all:	${NAME}
 
 ${NAME}:	${OBJ}

@@ -9,7 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "/home/nick/Documents/fdf/fdf",
-			"args": ["maps/elem.fdf"],
+			"args": ["maps/basictest.fdf"],
 			"stopAtEntry": false,
 			"cwd": "/home/nick/Documents/fdf",
 			"environment": [],

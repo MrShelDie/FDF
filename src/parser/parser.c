@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:46:55 by nick              #+#    #+#             */
-/*   Updated: 2022/03/04 23:43:06 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/05 13:09:21 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int	parse(t_fdf *fdf, const char *file_name)
 		return (ERROR);
 	if (!check_map(file_name, fdf->height, fdf->width))
 		return (ERROR);
-	fdf->matrix = alloc_matrix(fdf->height, fdf->height);
+	fdf->matrix = alloc_matrix(fdf->height, fdf->width);
 	if (!fdf->matrix)
 		return (ERROR);
 	if (!fill_matrix(fdf->matrix, fdf->height, fdf->width, file_name))
