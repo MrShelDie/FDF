@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:46:55 by nick              #+#    #+#             */
-/*   Updated: 2022/03/05 14:04:24 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/05 15:11:49 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,41 @@
 #include "parser.h"
 #include "parser_utils.h"
 #include "get_next_line.h"
+
+static int	get_color(const char *token)
+{
+	int				i;
+	unsigned int	color;
+
+	i = 0;
+	while (ft_isdigit(token[i]) && token[i] && token[i] != '\n')
+		i++;
+	if (!token[i] || token[i] == '\n')
+		return (UNDEF_COLOR);
+	i += 3;
+	color = 0x000000;
+	while (token[i] && token[i] != '\n')
+	{
+		color *= 16;
+		if (token[i] >= '0' && token[i] <= '9')
+			color += token[i] - '0';
+		else if (token[i] >= 'a' && token[i] <= 'f')
+			color += token[i] - 'a' + 10;
+		else
+			color += token[i] - 'A' + 10;
+		i++;
+	}
+	return (color);
+}
+
+static void	fill_point(
+	t_point *point, int row_nb, int col_nb, const char *token)
+{
+	point->x = (float)col_nb;
+	point->y = (float)row_nb;
+	point->z = (float)ft_atoi(token);
+	point->color = get_color(token);
+}
 
 static int	fill_line(t_point **matrix, int width, int fd, int row_nb)
 {
@@ -40,11 +75,7 @@ static int	fill_line(t_point **matrix, int width, int fd, int row_nb)
 	}
 	col_nb = -1;
 	while (++col_nb < width)
-	{
-		matrix[row_nb][col_nb].x = (float)col_nb;
-		matrix[row_nb][col_nb].y = (float)row_nb;
-		matrix[row_nb][col_nb].z = (float)ft_atoi(tokens[col_nb]);
-	}
+		fill_point(&matrix[row_nb][col_nb], row_nb, col_nb, tokens[col_nb]);
 	free(line);
 	ft_free_split(tokens);
 	return (SUCCESS);

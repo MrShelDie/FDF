@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:36:32 by nick              #+#    #+#             */
-/*   Updated: 2022/03/05 14:01:41 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/05 15:06:02 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,26 @@ int	get_matrix_width(const char *file_name)
 	return (width);
 }
 
+int	is_color(const char *token)
+{
+	int	i;
+
+	if (ft_strncmp(token, "0x", 2) != 0 && ft_strncmp(token, "0X", 2) != 0)
+		return (FALSE);
+	i = 2;
+	while (token[i] && token[i] != '\n')
+	{
+		if ((token[i] >= '0' && token[i] <= '9')
+			|| (token[i] >= 'a' && token[i] <= 'f')
+			|| (token[i] >= 'A' && token[i] <= 'F')
+		)
+			i++;
+		else
+			break ;
+	}
+	return (i <= COLOR_STR_SIZE);
+}
+
 int	is_number(const char *token)
 {
 	int	i;
@@ -73,13 +93,17 @@ int	is_number(const char *token)
 	i = 0;
 	if (token[0] == '-')
 		i++;
-	while (token[i])
+	while (token[i] && token[i] != '\n')
 	{
-		if (!ft_isdigit(token[i]) && token[i] != '\n')
-			return (ERROR);
+		if (!ft_isdigit(token[i]))
+			break ;
 		i++;
 	}
-	return (SUCCESS);
+	if (!token[i] || token[i] == '\n')
+		return (TRUE);
+	if (token[i] == ',' && is_color(&token[i + 1]))
+		return (TRUE);
+	return (FALSE);
 }
 
 int	check_line(int fd, int row_nb, int width)

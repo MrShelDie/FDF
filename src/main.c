@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:24:33 by nick              #+#    #+#             */
-/*   Updated: 2022/03/05 13:55:13 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/05 15:08:50 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,11 @@ int	main(int argc, char **argv)
 	for (int i = 0; i < fdf.height; i++)
 	{
 		for (int j = 0; j < fdf.width; j++)
+		{
 			printf("%3d", (int)(fdf.matrix[i][j].z));
+			if (fdf.matrix[i][j].color != UNDEF_COLOR)
+				printf(",%x", (int)(fdf.matrix[i][j].color));
+		}
 		printf("\n");
 	}
 
