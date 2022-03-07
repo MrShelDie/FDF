@@ -3,6 +3,8 @@
 		"get_next_line.h": "c",
 		"parser.h": "c",
 		"def.h": "c",
-		"parser_utils.h": "c"
+		"parser_utils.h": "c",
+		"random": "c",
+		"mlx_int.h": "c"
 	}
 }

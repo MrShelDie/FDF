@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_utils.h                                     :+:      :+:    :+:   */
+/*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/04 22:49:39 by nick              #+#    #+#             */
-/*   Updated: 2022/03/05 17:38:36 by nick             ###   ########.fr       */
+/*   Created: 2022/03/07 10:38:27 by nick              #+#    #+#             */
+/*   Updated: 2022/03/07 11:37:23 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_UTILS_H
-# define PARSER_UTILS_H
+#ifndef RENDER_H
+# define RENDER_H
 
-# define COLOR_STR_SIZE 8
-
-int		check_line(int fd, int row_nb, int width);
-int		fill_line(t_point **matrix, int width, int fd, int row_nb);
+void	render(t_fdf *fdf);
 
 #endif

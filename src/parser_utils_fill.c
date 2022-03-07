@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:46:55 by nick              #+#    #+#             */
-/*   Updated: 2022/03/05 17:44:23 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/07 10:45:01 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-#include "def.h"
+#include "fdf.h"
 #include "libft.h"
 #include "parser_utils.h"
 #include "get_next_line.h"
 
 static int	get_color(const char *token)
 {
-	int				i;
-	unsigned int	color;
+	int	i;
+	int	color;
 
 	i = 0;
 	if (token[i] == '-')
@@ -48,7 +48,7 @@ static int	get_color(const char *token)
 }
 
 static void	fill_point(
-	t_point *point, int row_nb, int col_nb, const char *token)
+	t_point_3d *point, int row_nb, int col_nb, const char *token)
 {
 	point->x = (float)col_nb;
 	point->y = (float)row_nb;
@@ -56,7 +56,7 @@ static void	fill_point(
 	point->color = get_color(token);
 }
 
-int	fill_line(t_point **matrix, int width, int fd, int row_nb)
+int	fill_line(t_point_3d **matrix_3d, int width, int fd, int row_nb)
 {
 	int		col_nb;
 	char	*line;
@@ -75,7 +75,7 @@ int	fill_line(t_point **matrix, int width, int fd, int row_nb)
 	}
 	col_nb = -1;
 	while (++col_nb < width)
-		fill_point(&matrix[row_nb][col_nb], row_nb, col_nb, tokens[col_nb]);
+		fill_point(&matrix_3d[row_nb][col_nb], row_nb, col_nb, tokens[col_nb]);
 	free(line);
 	ft_free_split(tokens);
 	return (SUCCESS);

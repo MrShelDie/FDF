@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 17:25:34 by nick              #+#    #+#             */
-/*   Updated: 2022/03/05 17:45:31 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/07 10:45:34 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-#include "def.h"
+#include "fdf.h"
 #include "libft.h"
-#include "matrix.h"
 #include "parser.h"
 #include "parser_utils.h"
 #include "get_next_line.h"
@@ -90,7 +89,7 @@ static int	check_map(const char *file_name, int height, int width)
 }
 
 static int	fill_matrix(
-	t_point **matrix, int height, int width, const char *file_name)
+	t_point_3d **matrix_3d, int height, int width, const char *file_name)
 {
 	int		fd;
 	int		row_nb;
@@ -101,7 +100,7 @@ static int	fill_matrix(
 	row_nb = -1;
 	while (++row_nb < height)
 	{
-		if (!fill_line(matrix, width, fd, row_nb))
+		if (!fill_line(matrix_3d, width, fd, row_nb))
 		{
 			close(fd);
 			return (ERROR);
@@ -119,12 +118,12 @@ int	parse(t_fdf *fdf, const char *file_name)
 		return (ERROR);
 	if (!check_map(file_name, fdf->height, fdf->width))
 		return (ERROR);
-	fdf->matrix = alloc_matrix(fdf->height, fdf->width);
-	if (!fdf->matrix)
+	fdf->matrix_3d = alloc_matrix_3d(fdf->height, fdf->width);
+	if (!fdf->matrix_3d)
 		return (ERROR);
-	if (!fill_matrix(fdf->matrix, fdf->height, fdf->width, file_name))
+	if (!fill_matrix(fdf->matrix_3d, fdf->height, fdf->width, file_name))
 	{
-		free_matrix(fdf->matrix, fdf->height);
+		free_matrix_3d(fdf->matrix_3d, fdf->height);
 		return (ERROR);
 	}
 	return (SUCCESS);

@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   def.h                                              :+:      :+:    :+:   */
+/*   render_utils.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/04 22:59:50 by nick              #+#    #+#             */
-/*   Updated: 2022/03/05 14:45:30 by nick             ###   ########.fr       */
+/*   Created: 2022/03/07 10:58:57 by nick              #+#    #+#             */
+/*   Updated: 2022/03/07 15:04:56 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEF_H
-# define DEF_H
+#ifndef RENDER_UTILS_H
+# define RENDER_UTILS_H
 
-# define TRUE 1
-# define FALSE 0
+# include "fdf.h"
 
-# define SUCCESS 1
-# define ERROR 0
+# define MSF 1
+# define LSF 0
 
-# define UNDEF_COLOR 0xffffffff
-
-typedef struct s_point
+typedef struct s_image
 {
-	float			x;
-	float			y;
-	float			z;
-	unsigned int	color;
-}	t_point;
+	void	*img_ptr;
+	char	*buff;
+	int		bits_per_pixel;
+	int		size_line;
+	int		endian;
+}	t_image;
 
-typedef struct s_fdf
-{
-	int		height;
-	int		width;
-	t_point	**matrix;
-}	t_fdf;
+void	draw_line(t_fdf *fdf, t_image *img, t_point_2d a, t_point_2d b);
 
 #endif

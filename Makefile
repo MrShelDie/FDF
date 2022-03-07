@@ -1,10 +1,9 @@
-_SRC_		= main.c			matrix.c
-_PARS_		= parser.c			parser_utils_check.c	parser_utils_fill.c
-_GNL_		= get_next_line.c	get_next_line_utils.c
+_SRC_ =															\
+fdf.c				matrix.c			render.c				\
+render_utils.c		parser.c			parser_utils_check.c	\
+parser_utils_fill.c get_next_line.c		get_next_line_utils.c
 
 SRC			= $(addprefix src/, $(_SRC_))
-PARS		= $(addprefix src/parser/, $(_PARS_))
-GNL			= $(addprefix src/get_next_line/, $(_GNL_))
 
 SRC			+= $(PARS)
 SRC			+= $(GNL)
@@ -17,16 +16,20 @@ GNLDIR		= src/get_next_line
 PARSDIR		= src/parser
 LIBFTDIR	= lib/libft
 LIB			= lib/libft/libft.a
+MLXDIR		= lib/minilibx-linux
+MLX			= lib/minilibx-linux/libmlx_Linux.a
+INCDIR		= include
 
 CC			= gcc
 CFLAGS		= -Wall -Werror -Wextra -g
-CPPFLAGS	= -MMD -I./src -I./$(LIBFTDIR) -I./$(GNLDIR) -I./$(PARSDIR)
+CPPFLAGS	= -MMD -I./src -I./$(LIBFTDIR) -I./$(GNLDIR) -I./$(PARSDIR) -I./$(MLXDIR) -I./$(INCDIR) 
+LDFLAGS		= $(MLX) -lmlx -lXext -lX11
 
 all:		$(NAME)
 
 $(NAME):	$(OBJ)
 	@make -C $(LIBFTDIR) all
-	$(CC) $(CFLAGS) $(OBJ) $(LIB) -o $@ 
+	$(CC) $(CFLAGS) $(OBJ) $(LDFLAGS) $(LIB) -o $@ 
 
 clean:
 	@make -C $(LIBFTDIR) clean
