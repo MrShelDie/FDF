@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:24:33 by nick              #+#    #+#             */
-/*   Updated: 2022/03/07 14:13:51 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/08 00:59:41 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 #include "libft.h"
 #include "parser.h"
 #include "render.h"
+
+
+#include "render_utils.h"
+
 
 static int	check_args(int argc, char **argv)
 {
@@ -52,7 +56,10 @@ int	main(int argc, char **argv)
 	}
 
 	for (int i = 0; i < 100000000; i++);
-	render(&fdf);
+	scale(&fdf, 4);
+	
+	for (int i = 0; i < 100000000; i++)
+		render(&fdf);
 
 	mlx_loop(fdf.mlx_ptr);
 	free_matrix_3d(fdf.matrix_3d, fdf.height);

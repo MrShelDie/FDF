@@ -1,7 +1,8 @@
 _SRC_ =															\
 fdf.c				matrix.c			render.c				\
 render_utils.c		parser.c			parser_utils_check.c	\
-parser_utils_fill.c get_next_line.c		get_next_line_utils.c
+parser_utils_fill.c get_next_line.c		get_next_line_utils.c	\
+projection.c		transform.c
 
 SRC			= $(addprefix src/, $(_SRC_))
 
@@ -21,9 +22,9 @@ MLX			= lib/minilibx-linux/libmlx_Linux.a
 INCDIR		= include
 
 CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra -g
+CFLAGS		= -g #-Wall -Werror -Wextra -g
 CPPFLAGS	= -MMD -I./src -I./$(LIBFTDIR) -I./$(GNLDIR) -I./$(PARSDIR) -I./$(MLXDIR) -I./$(INCDIR) 
-LDFLAGS		= $(MLX) -lmlx -lXext -lX11
+LDFLAGS		= $(MLX) -lmlx -lXext -lX11 -lm
 
 all:		$(NAME)
 

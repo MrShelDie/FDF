@@ -5,6 +5,11 @@
 		"def.h": "c",
 		"parser_utils.h": "c",
 		"random": "c",
-		"mlx_int.h": "c"
+		"mlx_int.h": "c",
+		"fdf.h": "c",
+		"math.h": "c",
+		"*.inc": "c",
+		"bit": "c",
+		"*.tcc": "c"
 	}
 }

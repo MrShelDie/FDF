@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:59:50 by nick              #+#    #+#             */
-/*   Updated: 2022/03/07 15:57:11 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/07 22:49:07 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ typedef struct s_fdf
 }	t_fdf;
 
 t_point_3d	**alloc_matrix_3d(int height, int width);
+t_point_2d	**alloc_matrix_2d(int height, int width);
 void		free_matrix_3d(t_point_3d **matrix_3d, int height);
+void		free_matrix_2d(t_point_2d **matrix_2d, int height);
 
 #endif

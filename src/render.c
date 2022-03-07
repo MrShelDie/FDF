@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 01:31:59 by nick              #+#    #+#             */
-/*   Updated: 2022/03/07 15:39:09 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/08 01:08:23 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,23 @@
 
 static void	draw_lines(t_fdf *fdf, t_image *img)
 {
-	struct timeval start1, end1;
+	int	i;
+	int	j;
 
-	t_point_2d	a = {0, 0, 0xff0000};
-	t_point_2d	b = {900, 900, 0xff0000};
-
-	gettimeofday(&start1, NULL);
-	draw_line(fdf, img, a, b);
-	gettimeofday(&end1, NULL);
-
-	double time_taken1 = end1.tv_sec + end1.tv_usec / 1e6 - start1.tv_sec - start1.tv_usec / 1e6; // in seconds
-
-	printf("time program took %f seconds to execute 1\n", time_taken1);
+	i = -1;
+	while (++i < fdf->height)
+	{
+		j = -1;
+		while (++j < fdf->width)
+		{
+			if (j < fdf->width - 1)
+				draw_line(
+					fdf, img, fdf->matrix_2d[i][j], fdf->matrix_2d[i][j + 1]);
+			if (i < fdf->height - 1)
+				draw_line(
+					fdf, img, fdf->matrix_2d[i][j], fdf->matrix_2d[i + 1][j]);
+		}
+	}
 }
 
 void	render(t_fdf *fdf)
@@ -49,9 +54,13 @@ void	render(t_fdf *fdf)
 		mlx_destroy_image(fdf->mlx_ptr, img.img_ptr);
 		return ;
 	}
-	// проецирование
+	
+	shift_3d(fdf, -fdf->width * 2, -fdf->height * 2);
+	rotate_z(fdf, 0.002);
+	shift_3d(fdf, fdf->width * 2, fdf->height * 2);
+	isometric(fdf, 0.1);
+	shift_2d(fdf, 600, 100);
 	draw_lines(fdf, &img);
-
 	mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr, img.img_ptr, 0, 0);
 	mlx_destroy_image(fdf->mlx_ptr, img.img_ptr);
 }
