@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 10:58:57 by nick              #+#    #+#             */
-/*   Updated: 2022/03/07 23:00:48 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/10 00:10:20 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,6 @@ typedef struct s_interp_param
 }	t_interp_param;
 
 void	draw_line(t_fdf *fdf, t_image *img, t_point_2d a, t_point_2d b);
-void	isometric(t_fdf *fdf, float height_scale);
-void	scale(t_fdf *fdf, float scale);
-void	shift_2d(t_fdf *fdf, int x, int y);
-void	shift_3d(t_fdf *fdf, int x, int y);
-void	rotate_z(t_fdf *fdf, float angle);
+void	isometric(t_fdf *fdf);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 01:31:59 by nick              #+#    #+#             */
-/*   Updated: 2022/03/08 01:08:23 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/10 00:17:29 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,7 @@ void	render(t_fdf *fdf)
 		mlx_destroy_image(fdf->mlx_ptr, img.img_ptr);
 		return ;
 	}
-	
-	shift_3d(fdf, -fdf->width * 2, -fdf->height * 2);
-	rotate_z(fdf, 0.002);
-	shift_3d(fdf, fdf->width * 2, fdf->height * 2);
-	isometric(fdf, 0.1);
-	shift_2d(fdf, 600, 100);
+	isometric(fdf);
 	draw_lines(fdf, &img);
 	mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr, img.img_ptr, 0, 0);
 	mlx_destroy_image(fdf->mlx_ptr, img.img_ptr);

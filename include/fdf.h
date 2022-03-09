@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:59:50 by nick              #+#    #+#             */
-/*   Updated: 2022/03/07 22:49:07 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/10 01:26:47 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,18 @@
 # define WIN_HEIGHT 720
 # define WIN_WIDTH 1280
 
+# define ISO_HEIGHT_SCALE 0.05f
+# define ISO_COS_ALPHA 0.866025f
+# define ISO_SIN_BETA 0.5f
+
+# define INIT_DELAY 100000000
+
+typedef enum e_projection
+{
+	ISOMETRIC,
+	PARALLEL
+}	t_projection;
+
 typedef struct s_point_3d
 {
 	float	x;
@@ -38,16 +50,14 @@ typedef struct s_point_2d
 	int		color;
 }	t_point_2d;
 
-typedef enum e_projection
-{
-	ISOMETRIC,
-	PARALLEL
-}	t_projection;
-
 typedef struct s_fdf
 {
 	int				height;
 	int				width;
+	int				shift_x;
+	int				shift_y;
+	float			angle;
+	float			iso_height_scale;
 	t_point_3d		**matrix_3d;
 	t_point_2d		**matrix_2d;
 
@@ -61,5 +71,9 @@ t_point_3d	**alloc_matrix_3d(int height, int width);
 t_point_2d	**alloc_matrix_2d(int height, int width);
 void		free_matrix_3d(t_point_3d **matrix_3d, int height);
 void		free_matrix_2d(t_point_2d **matrix_2d, int height);
+
+void		scale_3d(t_fdf *fdf, float scale);
+void		shift_3d(t_fdf *fdf, int x, int y);
+//void		rotate_z_3d(t_fdf *fdf, float angle);
 
 #endif

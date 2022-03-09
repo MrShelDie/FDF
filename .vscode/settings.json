@@ -10,6 +10,7 @@
 		"math.h": "c",
 		"*.inc": "c",
 		"bit": "c",
-		"*.tcc": "c"
+		"*.tcc": "c",
+		"cmath": "c"
 	}
 }
