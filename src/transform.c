@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:59 by nick              #+#    #+#             */
-/*   Updated: 2022/03/10 01:27:00 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/14 01:42:08 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	scale_3d(t_fdf *fdf, float scale)
 	int	j;
 
 	i = -1;
-	while (++i < fdf->height)
+	while (++i < fdf->map_height)
 	{
 		j = -1;
-		while (++j < fdf->width)
+		while (++j < fdf->map_width)
 		{
 			fdf->matrix_3d[i][j].x *= scale;
 			fdf->matrix_3d[i][j].y *= scale;
@@ -38,15 +38,60 @@ void	shift_3d(t_fdf *fdf, int x, int y)
 	int	j;
 
 	i = -1;
-	while (++i < fdf->height)
+	while (++i < fdf->map_height)
 	{
 		j = -1;
-		while (++j < fdf->width)
+		while (++j < fdf->map_width)
 		{
 			fdf->matrix_3d[i][j].x += x;
 			fdf->matrix_3d[i][j].y += y;
 		}
 	}
+}
+
+void	rotate_point_x(float *x, float *y, float *z, float angle_x)
+{
+	float	y1;
+	float	z1;
+	float	cos_angle;
+	float	sin_angle;
+
+	cos_angle = cos(angle_x);
+	sin_angle = sin(angle_x);
+	y1 = *y * cos_angle - *z * sin_angle;
+	z1 = *y * sin_angle + *z * cos_angle;
+	*y = y1;
+	*z = z1;
+}
+
+void	rotate_point_y(float *x, float *y, float *z, float angle_y)
+{
+	float	x1;
+	float	z1;
+	float	cos_angle;
+	float	sin_angle;
+
+	cos_angle = cos(angle_y);
+	sin_angle = sin(angle_y);
+	x1 = *x * cos_angle + *z * sin_angle;
+	z1 = *x * (-sin_angle) + *z * cos_angle;
+	*x = x1;
+	*z = z1;
+}
+
+void	rotate_point_z(float *x, float *y, float *z, float angle_z)
+{
+	float	x1;
+	float	y1;
+	float	cos_angle;
+	float	sin_angle;
+
+	cos_angle = cos(angle_z);
+	sin_angle = sin(angle_z);
+	x1 = *x * cos_angle - *y * sin_angle;
+	y1 = *x * sin_angle + *y * cos_angle;
+	*x = x1;
+	*y = y1;
 }
 
 // void	rotate_z_3d(t_fdf *fdf, float angle)

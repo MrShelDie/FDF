@@ -11,6 +11,11 @@
 		"*.inc": "c",
 		"bit": "c",
 		"*.tcc": "c",
-		"cmath": "c"
+		"cmath": "c",
+		"atomic": "c",
+		"iomanip": "c",
+		"istream": "c",
+		"ostream": "c",
+		"source_location": "c"
 	}
 }

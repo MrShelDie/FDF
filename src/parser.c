@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 17:25:34 by nick              #+#    #+#             */
-/*   Updated: 2022/03/07 21:06:46 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/14 01:10:37 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,24 +112,24 @@ static int	fill_matrix(
 
 int	parse(t_fdf *fdf, const char *file_name)
 {
-	fdf->height = get_matrix_height(file_name);
-	fdf->width = get_matrix_width(file_name);
-	if (fdf->height < 1 || fdf->width < 1)
+	fdf->map_height = get_matrix_height(file_name);
+	fdf->map_width = get_matrix_width(file_name);
+	if (fdf->map_height < 1 || fdf->map_width < 1)
 		return (ERROR);
-	if (!check_map(file_name, fdf->height, fdf->width))
+	if (!check_map(file_name, fdf->map_height, fdf->map_width))
 		return (ERROR);
-	fdf->matrix_3d = alloc_matrix_3d(fdf->height, fdf->width);
+	fdf->matrix_3d = alloc_matrix_3d(fdf->map_height, fdf->map_width);
 	if (!fdf->matrix_3d)
 		return (ERROR);
-	fdf->matrix_2d = alloc_matrix_2d(fdf->height, fdf->width);
+	fdf->matrix_2d = alloc_matrix_2d(fdf->map_height, fdf->map_width);
 	if (!fdf->matrix_2d)
 	{
-		free_matrix_3d(fdf->matrix_3d, fdf->height);
+		free_matrix_3d(fdf->matrix_3d, fdf->map_height);
 		return (ERROR);
 	}
-	if (!fill_matrix(fdf->matrix_3d, fdf->height, fdf->width, file_name))
+	if (!fill_matrix(fdf->matrix_3d, fdf->map_height, fdf->map_width, file_name))
 	{
-		free_matrix_3d(fdf->matrix_3d, fdf->height);
+		free_matrix_3d(fdf->matrix_3d, fdf->map_height);
 		return (ERROR);
 	}
 	return (SUCCESS);

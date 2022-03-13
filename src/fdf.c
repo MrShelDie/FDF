@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:24:33 by nick              #+#    #+#             */
-/*   Updated: 2022/03/10 02:04:17 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/14 01:45:11 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,21 @@ static int	fdf_init(t_fdf *fdf, const char *file_name)
 	fdf->mlx_ptr = mlx_init();
 	if (!fdf->mlx_ptr)
 	{
-		free_matrix_3d(fdf->matrix_3d, fdf->height);
+		free_matrix_3d(fdf->matrix_3d, fdf->map_height);
 		return (ERROR);
 	}
 	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "FDF");
 	if (!fdf->win_ptr)
 	{
-		free_matrix_3d(fdf->matrix_3d, fdf->height);
+		free_matrix_3d(fdf->matrix_3d, fdf->map_height);
 		return (ERROR);
 	}
 	fdf->shift_x = WIN_WIDTH / 2;
 	fdf->shift_y = WIN_HEIGHT / 2;
-	fdf->angle = 0;
-	fdf->iso_height_scale = ISO_HEIGHT_SCALE;
+	fdf->angle_x = 0;
+	fdf->angle_y = 0;
+	fdf->angle_z = 0;
+	fdf->height_scale = ISO_HEIGHT_SCALE;
 }
 
 static void	delay(int iter_nb)
@@ -66,17 +68,20 @@ int	main(int argc, char **argv)
 		return (0);
 	if (!fdf_init(&fdf, argv[1]))
 		return (0);
-	shift_3d(&fdf, -fdf.width / 2, -fdf.height / 2);
-	scale_3d(&fdf, WIN_HEIGHT / fdf.width * 0.8);
+	shift_3d(&fdf, -fdf.map_width / 2, -fdf.map_height / 2);
+	scale_3d(&fdf, WIN_HEIGHT / fdf.map_width * 0.8);
 	delay(INIT_DELAY);
 
-	while (1)
-	{
-		//rotate_z_3d(&fdf, 1);
-		fdf.angle += 0.001;
-		render(&fdf);
-	}
+	// while (1)
+	// {
+	// 	//rotate_z_3d(&fdf, 1);
+	// 	//fdf.angle_z += 0.001;
+	// 	//fdf.angle_x += 0.001;
+	// 	fdf.angle_y += 0.001;
+	// 	render(&fdf);
+	// }
+	render(&fdf);
 	mlx_loop(fdf.mlx_ptr);
-	free_matrix_3d(fdf.matrix_3d, fdf.height);
+	free_matrix_3d(fdf.matrix_3d, fdf.map_height);
 	return (0);
 }

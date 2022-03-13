@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 01:31:59 by nick              #+#    #+#             */
-/*   Updated: 2022/03/10 00:17:29 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/14 01:11:16 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ static void	draw_lines(t_fdf *fdf, t_image *img)
 	int	j;
 
 	i = -1;
-	while (++i < fdf->height)
+	while (++i < fdf->map_height)
 	{
 		j = -1;
-		while (++j < fdf->width)
+		while (++j < fdf->map_width)
 		{
-			if (j < fdf->width - 1)
+			if (j < fdf->map_width - 1)
 				draw_line(
 					fdf, img, fdf->matrix_2d[i][j], fdf->matrix_2d[i][j + 1]);
-			if (i < fdf->height - 1)
+			if (i < fdf->map_height - 1)
 				draw_line(
 					fdf, img, fdf->matrix_2d[i][j], fdf->matrix_2d[i + 1][j]);
 		}

@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:59:50 by nick              #+#    #+#             */
-/*   Updated: 2022/03/10 01:26:47 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/14 01:45:31 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define WIN_HEIGHT 720
 # define WIN_WIDTH 1280
 
-# define ISO_HEIGHT_SCALE 0.05f
+# define ISO_HEIGHT_SCALE 0.2f
 # define ISO_COS_ALPHA 0.866025f
 # define ISO_SIN_BETA 0.5f
 
@@ -52,12 +52,14 @@ typedef struct s_point_2d
 
 typedef struct s_fdf
 {
-	int				height;
-	int				width;
+	int				map_height;
+	int				map_width;
 	int				shift_x;
 	int				shift_y;
-	float			angle;
-	float			iso_height_scale;
+	float			angle_x;
+	float			angle_y;
+	float			angle_z;
+	float			height_scale;
 	t_point_3d		**matrix_3d;
 	t_point_2d		**matrix_2d;
 
@@ -74,6 +76,5 @@ void		free_matrix_2d(t_point_2d **matrix_2d, int height);
 
 void		scale_3d(t_fdf *fdf, float scale);
 void		shift_3d(t_fdf *fdf, int x, int y);
-//void		rotate_z_3d(t_fdf *fdf, float angle);
 
 #endif
