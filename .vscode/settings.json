@@ -16,6 +16,8 @@
 		"iomanip": "c",
 		"istream": "c",
 		"ostream": "c",
-		"source_location": "c"
+		"source_location": "c",
+		"xlib.h": "c",
+		"x.h": "c"
 	}
 }

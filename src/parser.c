@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 17:25:34 by nick              #+#    #+#             */
-/*   Updated: 2022/03/14 01:10:37 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/14 20:11:55 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,8 @@ int	parse(t_fdf *fdf, const char *file_name)
 		free_matrix_3d(fdf->matrix_3d, fdf->map_height);
 		return (ERROR);
 	}
-	if (!fill_matrix(fdf->matrix_3d, fdf->map_height, fdf->map_width, file_name))
+	if (!fill_matrix(
+			fdf->matrix_3d, fdf->map_height, fdf->map_width, file_name))
 	{
 		free_matrix_3d(fdf->matrix_3d, fdf->map_height);
 		return (ERROR);
