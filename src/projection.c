@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:48:51 by nick              #+#    #+#             */
-/*   Updated: 2022/03/14 20:58:42 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/15 09:53:59 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ void	isometric(t_fdf *fdf)
 			rotate_point(fdf, &p);
 			fdf->matrix_2d[i][j].x
 				= (p.x - p.y) * COS_PI_3 + fdf->shift_x;
-			fdf->matrix_2d[i][j].y = (p.x + p.y) * SIN_PI_6 + fdf->shift_y - p.z
+			fdf->matrix_2d[i][j].y
+				= (p.x + p.y) * SIN_PI_6 + fdf->shift_y - p.z
 				* fdf->height_scale;
 			fdf->matrix_2d[i][j].color = fdf->matrix_3d[i][j].color;
 		}

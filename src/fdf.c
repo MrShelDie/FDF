@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:24:33 by nick              #+#    #+#             */
-/*   Updated: 2022/03/14 22:12:53 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/15 09:54:31 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ static int	fdf_init(t_fdf *fdf, const char *file_name)
 	fdf->angle_y = 0;
 	fdf->angle_z = 0;
 	fdf->height_scale = ISO_HEIGHT_SCALE;
+	fdf->pressed_mouse_btn = NONE;
+	//fdf->zoom = WIN_HEIGHT / fdf->map_width * 0.8;
 }
 
 static void	delay(int iter_nb)
@@ -63,13 +65,15 @@ static void	delay(int iter_nb)
 		;
 }
 
-#include <X11/X.h>
-
 static void	init_events(t_fdf *fdf)
 {
-	mlx_do_key_autorepeaton(fdf->mlx_ptr);
+	mlx_loop_hook(fdf->mlx_ptr, loop_hook, fdf);
 	mlx_hook(fdf->win_ptr, KeyPress, KeyPressMask, key_press, fdf);
-	//mlx_mouse_hook(fdf->win_ptr, mouse_hook, fdf);
+	mlx_hook(fdf->win_ptr, ButtonPress, ButtonPressMask, button_press, fdf);
+	mlx_hook(fdf->win_ptr, ButtonRelease,
+		ButtonReleaseMask, button_release, fdf);
+	mlx_hook(fdf->win_ptr, MotionNotify,
+		PointerMotionMask, mouse_movement, fdf);
 }
 
 int	main(int argc, char **argv)
@@ -84,6 +88,8 @@ int	main(int argc, char **argv)
 	scale_map(&fdf, WIN_HEIGHT / fdf.map_width * 0.8);
 	delay(INIT_DELAY);
 	init_events(&fdf);
+	mlx_do_key_autorepeaton(fdf.mlx_ptr);
+	mlx_do_sync(fdf.mlx_ptr);
 	render(&fdf);
 	mlx_loop(fdf.mlx_ptr);
 	free_matrix_3d(fdf.matrix_3d, fdf.map_height);

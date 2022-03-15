@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:59:50 by nick              #+#    #+#             */
-/*   Updated: 2022/03/14 21:34:31 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/15 10:16:34 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,36 @@
 
 # define INIT_DELAY 100000000
 
-# define SHIFT_VALUE 10
+# define MOUSE_SENSIVITY 0.5f
+
+# define SHIFT_VALUE 8
+# define ZOOM_IN_VALUE 1.05f
+# define ZOOM_OUT_VALUE 0.95f
 
 # define KEY_W 119
 # define KEY_A 97
 # define KEY_S 115
 # define KEY_D 100
-# define LCM 1
+
+# define BTN_LCM 1
+# define BTN_MCM 2
+# define BTN_RCM 3
+# define BTN_UP 4
+# define BTN_DOWN 5
 
 typedef enum e_projection
 {
 	ISOMETRIC,
 	PARALLEL
 }	t_projection;
+
+typedef enum e_mouse_btn
+{
+	LKM = BTN_LCM,
+	MKM = BTN_MCM,
+	RLM = BTN_RCM,
+	NONE = 0
+}	t_mouse_btn;
 
 typedef struct s_point_3d
 {
@@ -74,6 +91,12 @@ typedef struct s_fdf
 	float			angle_y;
 	float			angle_z;
 	float			height_scale;
+	float			zoom;
+
+	int				last_cursor_click_x;
+	int				last_cursor_click_y;
+	t_mouse_btn		pressed_mouse_btn;
+
 	t_projection	projection;
 }	t_fdf;
 
