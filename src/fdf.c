@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:24:33 by nick              #+#    #+#             */
-/*   Updated: 2022/03/16 00:15:03 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/16 01:10:10 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static int	fdf_init(t_fdf *fdf, const char *file_name)
 	fdf->zoom = 1;
 
 	// переделать
-	fdf->radius = fdf->map_height * 2;
+	fdf->radius = fdf->map_height * 3;
 	// fdf->zoom = WIN_HEIGHT / fdf->map_width * 0.8;
 }
 

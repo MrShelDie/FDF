@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:48:51 by nick              #+#    #+#             */
-/*   Updated: 2022/03/16 00:50:49 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/16 01:11:52 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,9 @@ void	spherical(t_fdf *fdf)
 			p.y = p.y * ((fdf->radius + p.z) / fdf->radius);
 			p.z = sqrt(pow(fdf->radius + p.z, 2) - pow(p.x, 2) - pow(p.y, 2));
 			fdf->matrix_2d[i][j].x
-				= (p.x - p.y) * COS_PI_3 + fdf->shift_x;
+				= p.x + fdf->shift_x;
 			fdf->matrix_2d[i][j].y
-				= (p.x + p.y) * SIN_PI_6 + fdf->shift_y - p.z
+				= p.y + fdf->shift_y - p.z
 				* fdf->height_scale;
 			fdf->matrix_2d[i][j].color = fdf->matrix_3d[i][j].color;
 		}
