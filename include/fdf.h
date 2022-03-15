@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:59:50 by nick              #+#    #+#             */
-/*   Updated: 2022/03/15 10:58:44 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/15 21:57:14 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ typedef enum e_projection
 
 typedef enum e_mouse_btn
 {
-	LKM = BTN_LCM,
-	MKM = BTN_MCM,
+	LCM = BTN_LCM,
+	MCM = BTN_MCM,
 	NONE = 0
 }	t_mouse_btn;
 
@@ -105,5 +105,7 @@ void		free_matrix_2d(t_point_2d **matrix_2d, int height);
 
 void		scale_map(t_fdf *fdf, float scale);
 void		shift_map(t_fdf *fdf, int x, int y);
+
+void		rotate_z_3d(t_fdf *fdf, float angle);
 
 #endif

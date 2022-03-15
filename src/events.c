@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:42:21 by nick              #+#    #+#             */
-/*   Updated: 2022/03/15 10:59:04 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/15 23:16:37 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int	mouse_movement(int x, int y, void *param)
 	int dy1 = y - ((t_fdf *)param)->last_cursor_click_y;
 	dx = 0.577354 * dx1 + dy1;
 	dy = -0.577354 * dx1 + dy1;
-	if (((t_fdf *)param)->pressed_mouse_btn == MKM)
+	if (((t_fdf *)param)->pressed_mouse_btn == MCM)
 	{
 		// ((t_fdf *)param)->shift_x += dx;
 		// ((t_fdf *)param)->shift_y += dy;
@@ -118,10 +118,18 @@ int	mouse_movement(int x, int y, void *param)
 		((t_fdf *)param)->last_cursor_click_y = y;
 		shift_map(param, dx, dy);
 	}
+	else if (((t_fdf *)param)->pressed_mouse_btn == LCM)
+	{
+		((t_fdf *)param)->last_cursor_click_x = x;
+		((t_fdf *)param)->last_cursor_click_y = y;
+		((t_fdf *)param)->angle_z += -dx1 / 200.0;
+		// ((t_fdf *)param)->angle_x += -dy / 200.0;
+		// rotate_z_3d(param, dx1 / 200.0);
+	}
 }
 
 int	loop_hook(void *param)
 {
-	((t_fdf *)param)->angle_z += 0.001;
+	// ((t_fdf *)param)->angle_z += 0.001;
 	render(param);
 }
