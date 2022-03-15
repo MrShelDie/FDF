@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:24:33 by nick              #+#    #+#             */
-/*   Updated: 2022/03/15 11:43:52 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/16 00:15:03 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,15 @@ static int	fdf_init(t_fdf *fdf, const char *file_name)
 	}
 	fdf->shift_x = WIN_WIDTH / 2;
 	fdf->shift_y = WIN_HEIGHT / 2;
-	fdf->angle_x = 0;
-	fdf->angle_y = 0;
+	// fdf->angle_x = 0;
+	// fdf->angle_y = 0;
 	fdf->angle_z = 0;
 	fdf->height_scale = ISO_HEIGHT_SCALE;
 	fdf->pressed_mouse_btn = NONE;
 	fdf->zoom = 1;
+
+	// переделать
+	fdf->radius = fdf->map_height * 2;
 	// fdf->zoom = WIN_HEIGHT / fdf->map_width * 0.8;
 }
 

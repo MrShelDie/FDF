@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 10:58:57 by nick              #+#    #+#             */
-/*   Updated: 2022/03/14 20:59:19 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/15 23:31:53 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ typedef struct s_point
 }	t_point;
 
 void	draw_line(t_fdf *fdf, t_image *img, t_point_2d a, t_point_2d b);
+
 void	isometric(t_fdf *fdf);
+void	spherical(t_fdf *fdf);
+
 void	rotate_point(const t_fdf *prm, t_point *p);
 
 #endif

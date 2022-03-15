@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 01:31:59 by nick              #+#    #+#             */
-/*   Updated: 2022/03/14 01:11:16 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/15 23:32:13 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ void	render(t_fdf *fdf)
 		mlx_destroy_image(fdf->mlx_ptr, img.img_ptr);
 		return ;
 	}
-	isometric(fdf);
+	//isometric(fdf);
+	spherical(fdf);
 	draw_lines(fdf, &img);
 	mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr, img.img_ptr, 0, 0);
 	mlx_destroy_image(fdf->mlx_ptr, img.img_ptr);

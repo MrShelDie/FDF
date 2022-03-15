@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:48:51 by nick              #+#    #+#             */
-/*   Updated: 2022/03/15 23:13:01 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/16 00:50:49 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "render_utils.h"
 
 #include <math.h>
+
+#include <stdlib.h>
 
 // void	isometric(t_fdf *fdf, float iso_height_scale)
 // {
@@ -65,7 +67,34 @@ void	isometric(t_fdf *fdf)
 	}
 }
 
+void	spherical(t_fdf *fdf)
+{
+	int		i;
+	int		j;
+	t_point	p;
 
+	i = -1;
+	while (++i < fdf->map_height)
+	{
+		j = -1;
+		while (++j < fdf->map_width)
+		{
+			p.x = fdf->matrix_3d[i][j].x;
+			p.y = fdf->matrix_3d[i][j].y;
+			p.z = fdf->matrix_3d[i][j].z;
+			rotate_point(fdf, &p);
+			p.x = p.x * ((fdf->radius + p.z) / fdf->radius);
+			p.y = p.y * ((fdf->radius + p.z) / fdf->radius);
+			p.z = sqrt(pow(fdf->radius + p.z, 2) - pow(p.x, 2) - pow(p.y, 2));
+			fdf->matrix_2d[i][j].x
+				= (p.x - p.y) * COS_PI_3 + fdf->shift_x;
+			fdf->matrix_2d[i][j].y
+				= (p.x + p.y) * SIN_PI_6 + fdf->shift_y - p.z
+				* fdf->height_scale;
+			fdf->matrix_2d[i][j].color = fdf->matrix_3d[i][j].color;
+		}
+	}
+}
 
 
 			// float R = 350;

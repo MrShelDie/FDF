@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:59:50 by nick              #+#    #+#             */
-/*   Updated: 2022/03/15 21:57:14 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/15 23:38:33 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,12 @@ typedef struct s_fdf
 
 	int				shift_x;
 	int				shift_y;
-	float			angle_x;
-	float			angle_y;
+	// float			angle_x;
+	// float			angle_y;
 	float			angle_z;
 	float			height_scale;
 	float			zoom;
+	float			radius;
 
 	int				last_cursor_click_x;
 	int				last_cursor_click_y;
@@ -105,7 +106,5 @@ void		free_matrix_2d(t_point_2d **matrix_2d, int height);
 
 void		scale_map(t_fdf *fdf, float scale);
 void		shift_map(t_fdf *fdf, int x, int y);
-
-void		rotate_z_3d(t_fdf *fdf, float angle);
 
 #endif

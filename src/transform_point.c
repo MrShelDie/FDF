@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 20:16:16 by nick              #+#    #+#             */
-/*   Updated: 2022/03/15 23:06:46 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/15 23:26:01 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ void	rotate_point(const t_fdf *fdf, t_point *p)
 	center = fdf->matrix_3d[fdf->map_height / 2][fdf->map_width / 2];
 	p->x -= center.x;
 	p->y -= center.y;
-	rotate_point_x(fdf->angle_x, p);
-	rotate_point_y(fdf->angle_y, p);
+	//rotate_point_x(fdf->angle_x, p);
+	//rotate_point_y(fdf->angle_y, p);
 	rotate_point_z(fdf->angle_z, p);
 	p->x += center.x;
 	p->y += center.y;
