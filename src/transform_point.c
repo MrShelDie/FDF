@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 20:16:16 by nick              #+#    #+#             */
-/*   Updated: 2022/03/14 20:57:40 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/15 10:55:52 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,16 @@ static void	rotate_point_z(float angle_z, t_point *p)
 	p->y = y1;
 }
 
-void	rotate_point(const t_fdf *prm, t_point *p)
+void	rotate_point(const t_fdf *fdf, t_point *p)
 {
-	rotate_point_x(prm->angle_x, p);
-	rotate_point_x(prm->angle_y, p);
-	rotate_point_x(prm->angle_z, p);
+	t_point_3d	center;
+
+	center = fdf->matrix_3d[fdf->map_height / 2][fdf->map_width / 2];
+	p->x -= center.x;
+	p->y -= center.y;
+	rotate_point_x(fdf->angle_x, p);
+	rotate_point_y(fdf->angle_y, p);
+	rotate_point_z(fdf->angle_z, p);
+	p->x += center.x;
+	p->y += center.y;
 }

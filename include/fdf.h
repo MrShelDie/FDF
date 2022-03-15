@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:59:50 by nick              #+#    #+#             */
-/*   Updated: 2022/03/15 10:16:34 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/15 10:58:44 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@
 
 # define BTN_LCM 1
 # define BTN_MCM 2
-# define BTN_RCM 3
 # define BTN_UP 4
 # define BTN_DOWN 5
 
@@ -56,7 +55,6 @@ typedef enum e_mouse_btn
 {
 	LKM = BTN_LCM,
 	MKM = BTN_MCM,
-	RLM = BTN_RCM,
 	NONE = 0
 }	t_mouse_btn;
 

@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:24:33 by nick              #+#    #+#             */
-/*   Updated: 2022/03/15 09:54:31 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/15 11:03:42 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ static int	fdf_init(t_fdf *fdf, const char *file_name)
 	fdf->angle_z = 0;
 	fdf->height_scale = ISO_HEIGHT_SCALE;
 	fdf->pressed_mouse_btn = NONE;
-	//fdf->zoom = WIN_HEIGHT / fdf->map_width * 0.8;
+	fdf->zoom = 1;
+	// fdf->zoom = WIN_HEIGHT / fdf->map_width * 0.8;
 }
 
 static void	delay(int iter_nb)
@@ -89,7 +90,7 @@ int	main(int argc, char **argv)
 	delay(INIT_DELAY);
 	init_events(&fdf);
 	mlx_do_key_autorepeaton(fdf.mlx_ptr);
-	mlx_do_sync(fdf.mlx_ptr);
+	//mlx_do_sync(fdf.mlx_ptr);
 	render(&fdf);
 	mlx_loop(fdf.mlx_ptr);
 	free_matrix_3d(fdf.matrix_3d, fdf.map_height);

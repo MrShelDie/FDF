@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:42:21 by nick              #+#    #+#             */
-/*   Updated: 2022/03/15 10:17:00 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/15 10:59:04 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ int	button_press(int button, int x, int y, void *param)
 			((t_fdf *)param)->pressed_mouse_btn = BTN_LCM;
 		else if (button == BTN_MCM)
 			((t_fdf *)param)->pressed_mouse_btn = BTN_MCM;
-		else if (button == BTN_RCM)
-			((t_fdf *)param)->pressed_mouse_btn = BTN_RCM;
 		((t_fdf *)param)->last_cursor_click_x = x;
 		((t_fdf *)param)->last_cursor_click_y = y;
 	}
@@ -124,5 +122,6 @@ int	mouse_movement(int x, int y, void *param)
 
 int	loop_hook(void *param)
 {
+	((t_fdf *)param)->angle_z += 0.001;
 	render(param);
 }
