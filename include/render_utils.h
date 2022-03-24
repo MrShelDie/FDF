@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 10:58:57 by nick              #+#    #+#             */
-/*   Updated: 2022/03/15 23:31:53 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/24 07:54:29 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,6 @@ typedef struct s_interp_param
 	int	total_step;
 	int	current_step;
 }	t_interp_param;
-
-typedef struct s_point
-{
-	float	x;
-	float	y;
-	float	z;
-}	t_point;
 
 void	draw_line(t_fdf *fdf, t_image *img, t_point_2d a, t_point_2d b);
 

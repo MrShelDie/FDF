@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:48:51 by nick              #+#    #+#             */
-/*   Updated: 2022/03/16 01:11:52 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/24 08:32:01 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 // void	isometric(t_fdf *fdf, float iso_height_scale)
 // {
+# include <stdio.h>
 // 	int	i;
 // 	int	j;
 // 	int	x;
