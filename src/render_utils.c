@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 12:35:49 by nick              #+#    #+#             */
-/*   Updated: 2022/03/07 22:02:20 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/25 23:40:47 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 #include "mlx.h"
 #include "fdf.h"
 #include "render_utils.h"
+
+
+#include <limits.h>
 
 static void	put_color(t_image *img, int pixel, int color)
 {
@@ -72,6 +75,9 @@ void	draw_line(t_fdf *fdf, t_image *img, t_point_2d a, t_point_2d b)
 	int				max;
 	//t_interp_param	interp_param;
 
+	if (b.x > 3 * WIN_WIDTH || a.x > 3 * WIN_WIDTH || b.y > 3 * WIN_WIDTH || a.y > 3 * WIN_WIDTH
+		|| b.x < -2 *WIN_WIDTH || a.x < -2 *WIN_WIDTH || b.y < -2 * WIN_WIDTH || a.y < -2 *WIN_WIDTH)
+		return ;
 	dx = b.x - a.x;
 	dy = b.y - a.y;
 	if (abs((int)dx) > abs((int)dy))
@@ -81,7 +87,7 @@ void	draw_line(t_fdf *fdf, t_image *img, t_point_2d a, t_point_2d b)
 	dx /= max;
 	dy /= max;
 	//init_interp_param(&interp_param, a.color, b.color, max);
-	while ((int)(a.x - b.x) || (int)(a.y - b.y))
+	while ((int)(b.x - a.x) || (int)(b.y - a.y))
 	{
 		// TODO interpolation
 		put_pixel(fdf, img, &a);

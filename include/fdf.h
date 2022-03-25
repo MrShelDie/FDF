@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:59:50 by nick              #+#    #+#             */
-/*   Updated: 2022/03/24 07:54:44 by nick             ###   ########.fr       */
+/*   Updated: 2022/03/25 22:47:36 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ typedef struct s_fdf
 
 	int				shift_x;
 	int				shift_y;
+	float				shift3d_x;
+	float				shift3d_y;
 	// float			angle_x;
 	// float			angle_y;
 	float			angle_z;
