@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 10:58:57 by nick              #+#    #+#             */
-/*   Updated: 2022/04/02 20:17:04 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/03 00:30:17 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	draw_line(t_fdf *fdf, t_image *img, t_point_2d a, t_point_2d b);
 void	isometric(t_fdf *fdf);
 void	spheric(t_fdf *fdf);
 
-void	rotate_point(const t_fdf *prm, t_point_3d *p);
+void	rotate_point_global(const t_fdf *prm, t_point_3d *p);
+void	rotate_point_local(const t_fdf *fdf, t_point_3d *p);
 
 #endif

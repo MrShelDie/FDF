@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:42:21 by nick              #+#    #+#             */
-/*   Updated: 2022/04/02 23:36:50 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/03 00:19:43 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,11 @@ int	key_press(int keycode, t_fdf *fdf)
 		increase_map_height(fdf, 7);
 	else if (keycode == KEY_MINUS || keycode == KEY_NUM_MINUS)
 		increase_map_height(fdf, -7);
-	//printf("%d\n", keycode);
+	else if (keycode == KEY_C && fdf->rotation_center == GLOABAL)
+		fdf->rotation_center = LOCAL;
+	else if (keycode == KEY_C && fdf->rotation_center == LOCAL)
+		fdf->rotation_center = GLOABAL;
+	// printf("%d\n", keycode);
 }
 
 int	button_press(int button, int x, int y, t_fdf *fdf)

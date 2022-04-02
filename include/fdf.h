@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:59:50 by nick              #+#    #+#             */
-/*   Updated: 2022/04/02 23:35:20 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/03 00:39:58 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # define KEY_S 115
 # define KEY_D 100
 # define KEY_P 112
+# define KEY_C 99
 # define KEY_PLUS 61
 # define KEY_MINUS 45
 # define KEY_NUM_PLUS 65451
@@ -55,6 +56,12 @@ typedef enum e_projection
 	ISOMETRIC,
 	SPHERIC
 }	t_projection;
+
+typedef enum e_rotation_center
+{
+	GLOABAL,
+	LOCAL
+}	t_rotation_center;
 
 typedef enum e_mouse_btn
 {
@@ -81,29 +88,31 @@ typedef struct s_point_2d
 
 typedef struct s_fdf
 {
-	int				map_height;
-	int				map_width;
-	t_point_3d		**matrix_3d;
-	t_point_2d		**matrix_2d;
+	int					map_height;
+	int					map_width;
+	t_point_3d			**matrix_3d;
+	t_point_2d			**matrix_2d;
 
-	void			*mlx_ptr;
-	void			*win_ptr;
+	void				*mlx_ptr;
+	void				*win_ptr;
 
-	int				shift_x;
-	int				shift_y;
-	int				height_max;
-	float			shift3d_x;
-	float			shift3d_y;
-	float			angle_z;
-	float			height_scale;
-	float			zoom;
-	float			radius;
+	int					shift_x;
+	int					shift_y;
+	int					height_max;
+	float				shift3d_x;
+	float				shift3d_y;
+	float				angle_z_global;
+	float				angle_z_local;
+	float				height_scale;
+	float				zoom;
+	float				radius;
 
-	int				last_cursor_click_x;
-	int				last_cursor_click_y;
-	t_mouse_btn		pressed_mouse_btn;
+	int					last_cursor_click_x;
+	int					last_cursor_click_y;
+	t_mouse_btn			pressed_mouse_btn;
 
-	t_projection	projection;
+	t_projection		projection;
+	t_rotation_center	rotation_center;
 }	t_fdf;
 
 t_point_3d	**alloc_matrix_3d(int height, int width);
