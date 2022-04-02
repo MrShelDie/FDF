@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:59:50 by nick              #+#    #+#             */
-/*   Updated: 2022/03/25 22:47:36 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/02 23:35:20 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 # define WIN_HEIGHT 720
 # define WIN_WIDTH 1280
 
-# define ISO_HEIGHT_SCALE 0.2f
 # define COS_PI_3 0.866025f
 # define SIN_PI_6 0.5f
 
@@ -39,22 +38,29 @@
 # define KEY_A 97
 # define KEY_S 115
 # define KEY_D 100
+# define KEY_P 112
+# define KEY_PLUS 61
+# define KEY_MINUS 45
+# define KEY_NUM_PLUS 65451
+# define KEY_NUM_MINUS 65453
 
 # define BTN_LCM 1
 # define BTN_MCM 2
+# define BTN_RCM 3
 # define BTN_UP 4
 # define BTN_DOWN 5
 
 typedef enum e_projection
 {
 	ISOMETRIC,
-	PARALLEL
+	SPHERIC
 }	t_projection;
 
 typedef enum e_mouse_btn
 {
 	LCM = BTN_LCM,
 	MCM = BTN_MCM,
+	RCM = BTN_RCM,
 	NONE = 0
 }	t_mouse_btn;
 
@@ -73,13 +79,6 @@ typedef struct s_point_2d
 	int		color;
 }	t_point_2d;
 
-typedef struct s_point
-{
-	float	x;
-	float	y;
-	float	z;
-}	t_point;
-
 typedef struct s_fdf
 {
 	int				map_height;
@@ -92,10 +91,9 @@ typedef struct s_fdf
 
 	int				shift_x;
 	int				shift_y;
-	float				shift3d_x;
-	float				shift3d_y;
-	// float			angle_x;
-	// float			angle_y;
+	int				height_max;
+	float			shift3d_x;
+	float			shift3d_y;
 	float			angle_z;
 	float			height_scale;
 	float			zoom;
@@ -115,5 +113,7 @@ void		free_matrix_2d(t_point_2d **matrix_2d, int height);
 
 void		scale_map(t_fdf *fdf, float scale);
 void		shift_map(t_fdf *fdf, int x, int y);
+void		rotate_map(t_fdf *fdf, float value);
+void		increase_map_height(t_fdf *fdf, float value);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 17:25:34 by nick              #+#    #+#             */
-/*   Updated: 2022/03/14 20:11:55 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/02 22:07:48 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ static int	check_map(const char *file_name, int height, int width)
 	return (SUCCESS);
 }
 
-static int	fill_matrix(
-	t_point_3d **matrix_3d, int height, int width, const char *file_name)
+static int	fill_matrix(t_fdf *fdf, int height,
+	int width, const char *file_name)
 {
 	int		fd;
 	int		row_nb;
@@ -100,7 +100,7 @@ static int	fill_matrix(
 	row_nb = -1;
 	while (++row_nb < height)
 	{
-		if (!fill_line(matrix_3d, width, fd, row_nb))
+		if (!fill_line(fdf, width, fd, row_nb))
 		{
 			close(fd);
 			return (ERROR);
@@ -127,8 +127,7 @@ int	parse(t_fdf *fdf, const char *file_name)
 		free_matrix_3d(fdf->matrix_3d, fdf->map_height);
 		return (ERROR);
 	}
-	if (!fill_matrix(
-			fdf->matrix_3d, fdf->map_height, fdf->map_width, file_name))
+	if (!fill_matrix(fdf, fdf->map_height, fdf->map_width, file_name))
 	{
 		free_matrix_3d(fdf->matrix_3d, fdf->map_height);
 		return (ERROR);

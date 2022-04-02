@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:24:33 by nick              #+#    #+#             */
-/*   Updated: 2022/03/25 01:23:36 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/02 23:04:55 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static int	check_args(int argc, char **argv)
 
 static int	fdf_init(t_fdf *fdf, const char *file_name)
 {
+	fdf->height_max = -1;
 	if (!parse(fdf, file_name))
 		return (ERROR);
 	fdf->mlx_ptr = mlx_init();
@@ -54,12 +55,14 @@ static int	fdf_init(t_fdf *fdf, const char *file_name)
 	// fdf->angle_x = 0;
 	// fdf->angle_y = 0;
 	fdf->angle_z = 0;
-	fdf->height_scale = ISO_HEIGHT_SCALE;
+	fdf->height_scale = 1; /// fdf->height_max;
 	fdf->pressed_mouse_btn = NONE;
 	fdf->zoom = 1;
 
 	// переделать
-	fdf->radius = fdf->map_height * 3;
+	fdf->radius = WIN_HEIGHT;
+	fdf->projection = ISOMETRIC;
+	// fdf->radius = fdf->map_height;
 	// fdf->zoom = WIN_HEIGHT / fdf->map_width * 0.8;
 }
 
@@ -93,18 +96,9 @@ int	main(int argc, char **argv)
 	delay(INIT_DELAY);
 	init_events(&fdf);
 	mlx_do_key_autorepeaton(fdf.mlx_ptr);
-	//mlx_do_sync(fdf.mlx_ptr);
+	mlx_do_sync(fdf.mlx_ptr);
 	render(&fdf);
 	mlx_loop(fdf.mlx_ptr);
 	free_matrix_3d(fdf.matrix_3d, fdf.map_height);
 	return (0);
 }
-
-// while (1)
-	// {
-	// 	//rotate_z_3d(&fdf, 1);
-	// 	fdf.angle_z += 0.001;
-	// 	fdf.angle_x += 0.001;
-	// 	fdf.angle_y += 0.001;
-	// 	render(&fdf);
-	// }

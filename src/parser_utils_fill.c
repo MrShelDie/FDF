@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:46:55 by nick              #+#    #+#             */
-/*   Updated: 2022/03/07 10:45:01 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/02 22:20:18 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,18 @@ static int	get_color(const char *token)
 	return (color);
 }
 
-static void	fill_point(
-	t_point_3d *point, int row_nb, int col_nb, const char *token)
+static void	fill_point(t_fdf *fdf, int row_nb,
+	int col_nb, const char *token)
 {
-	point->x = (float)col_nb;
-	point->y = (float)row_nb;
-	point->z = (float)ft_atoi(token, NULL);
-	point->color = get_color(token);
+	fdf->matrix_3d[row_nb][col_nb].x = (float)col_nb;
+	fdf->matrix_3d[row_nb][col_nb].y = (float)row_nb;
+	fdf->matrix_3d[row_nb][col_nb].z = (float)ft_atoi(token, NULL);
+	if (abs(fdf->matrix_3d[row_nb][col_nb].z) > fdf->height_max)
+		fdf->height_max = abs(fdf->matrix_3d[row_nb][col_nb].z);
+	fdf->matrix_3d[row_nb][col_nb].color = get_color(token);
 }
 
-int	fill_line(t_point_3d **matrix_3d, int width, int fd, int row_nb)
+int	fill_line(t_fdf *fdf, int width, int fd, int row_nb)
 {
 	int		col_nb;
 	char	*line;
@@ -75,7 +77,7 @@ int	fill_line(t_point_3d **matrix_3d, int width, int fd, int row_nb)
 	}
 	col_nb = -1;
 	while (++col_nb < width)
-		fill_point(&matrix_3d[row_nb][col_nb], row_nb, col_nb, tokens[col_nb]);
+		fill_point(fdf, row_nb, col_nb, tokens[col_nb]);
 	free(line);
 	ft_free_split(tokens);
 	return (SUCCESS);

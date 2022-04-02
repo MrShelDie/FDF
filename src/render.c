@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 01:31:59 by nick              #+#    #+#             */
-/*   Updated: 2022/03/24 23:07:16 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/02 20:38:49 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,10 @@ void	render(t_fdf *fdf)
 		mlx_destroy_image(fdf->mlx_ptr, img.img_ptr);
 		return ;
 	}
-	//isometric(fdf);
-	spherical(fdf);
+	if (fdf->projection == ISOMETRIC)
+		isometric(fdf);
+	else if (fdf->projection == SPHERIC)
+		spheric(fdf);
 	draw_lines(fdf, &img);
 	mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr, img.img_ptr, 0, 0);
 	mlx_destroy_image(fdf->mlx_ptr, img.img_ptr);
