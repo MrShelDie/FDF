@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:42:21 by nick              #+#    #+#             */
-/*   Updated: 2022/04/03 13:59:01 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/03 15:55:19 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ int	key_press(int keycode, t_fdf *fdf)
 		fdf->rot_center = LOCAL;
 	else if (keycode == KEY_C && fdf->rot_center == LOCAL)
 		fdf->rot_center = GLOABAL;
+	else if (keycode == KEY_G)
+		fdf->is_grad_on = !fdf->is_grad_on;
 	// printf("%d\n", keycode);
 }
 
