@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 10:58:57 by nick              #+#    #+#             */
-/*   Updated: 2022/04/03 00:30:17 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/03 15:20:51 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,14 @@ typedef struct s_image
 	int		endian;
 }	t_image;
 
-typedef struct s_interp_param
+typedef struct s_grad_prm
 {
-	int	color_a;
-	int	color_b;
-	int	total_step;
-	int	current_step;
-}	t_interp_param;
+	int		red_a;
+	int		blue_a;
+	int		curr_step;
+	float	red_step;
+	float	blue_step;
+}	t_grad_prm;
 
 void	draw_line(t_fdf *fdf, t_image *img, t_point_2d a, t_point_2d b);
 

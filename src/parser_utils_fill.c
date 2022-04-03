@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:46:55 by nick              #+#    #+#             */
-/*   Updated: 2022/04/02 22:20:18 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/03 13:11:36 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,10 @@ static void	fill_point(t_fdf *fdf, int row_nb,
 	fdf->matrix_3d[row_nb][col_nb].x = (float)col_nb;
 	fdf->matrix_3d[row_nb][col_nb].y = (float)row_nb;
 	fdf->matrix_3d[row_nb][col_nb].z = (float)ft_atoi(token, NULL);
-	if (abs(fdf->matrix_3d[row_nb][col_nb].z) > fdf->height_max)
-		fdf->height_max = abs(fdf->matrix_3d[row_nb][col_nb].z);
+	if (fdf->matrix_3d[row_nb][col_nb].z > fdf->height_max)
+		fdf->height_max = fdf->matrix_3d[row_nb][col_nb].z;
+	if (fdf->matrix_3d[row_nb][col_nb].z < fdf->height_min)
+		fdf->height_min = fdf->matrix_3d[row_nb][col_nb].z;
 	fdf->matrix_3d[row_nb][col_nb].color = get_color(token);
 }
 

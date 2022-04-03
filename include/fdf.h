@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:59:50 by nick              #+#    #+#             */
-/*   Updated: 2022/04/03 00:39:58 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/03 14:28:20 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,18 @@
 # define WIN_HEIGHT 720
 # define WIN_WIDTH 1280
 
+# define RED_HIGH 185
+# define BLUE_HIGH 0
+# define RED_LOW 42
+# define BLUE_LOW 156
+
+# define RED_MASK 0xff0000
+# define BLUE_MASK 0xff
+
 # define COS_PI_3 0.866025f
 # define SIN_PI_6 0.5f
 
-# define INIT_DELAY 100000000
+# define INIT_DELAY 1000000000
 
 # define MOUSE_SENSIVITY 0.5f
 
@@ -51,17 +59,19 @@
 # define BTN_UP 4
 # define BTN_DOWN 5
 
-typedef enum e_projection
+# include <stdbool.h>
+
+typedef enum e_proj
 {
 	ISOMETRIC,
 	SPHERIC
-}	t_projection;
+}	t_proj;
 
-typedef enum e_rotation_center
+typedef enum e_rot_center
 {
 	GLOABAL,
 	LOCAL
-}	t_rotation_center;
+}	t_rot_center;
 
 typedef enum e_mouse_btn
 {
@@ -88,31 +98,33 @@ typedef struct s_point_2d
 
 typedef struct s_fdf
 {
-	int					map_height;
-	int					map_width;
-	t_point_3d			**matrix_3d;
-	t_point_2d			**matrix_2d;
+	int				map_height;
+	int				map_width;
+	t_point_3d		**matrix_3d;
+	t_point_2d		**matrix_2d;
 
-	void				*mlx_ptr;
-	void				*win_ptr;
+	void			*mlx_ptr;
+	void			*win_ptr;
 
-	int					shift_x;
-	int					shift_y;
-	int					height_max;
-	float				shift3d_x;
-	float				shift3d_y;
-	float				angle_z_global;
-	float				angle_z_local;
-	float				height_scale;
-	float				zoom;
-	float				radius;
+	int				shift_x;
+	int				shift_y;
+	int				height_max;
+	int				height_min;
+	float			shift3d_x;
+	float			shift3d_y;
+	float			angle_z_global;
+	float			angle_z_local;
+	float			height_scale;
+	float			zoom;
+	float			radius;
 
-	int					last_cursor_click_x;
-	int					last_cursor_click_y;
-	t_mouse_btn			pressed_mouse_btn;
+	int				last_cursor_click_x;
+	int				last_cursor_click_y;
+	t_mouse_btn		pressed_mouse_btn;
 
-	t_projection		projection;
-	t_rotation_center	rotation_center;
+	t_proj			proj;
+	t_rot_center	rot_center;
+	bool			is_grad_on;
 }	t_fdf;
 
 t_point_3d	**alloc_matrix_3d(int height, int width);

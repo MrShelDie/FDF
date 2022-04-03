@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:48:51 by nick              #+#    #+#             */
-/*   Updated: 2022/04/03 00:39:07 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/03 14:22:27 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,22 @@
 // 	}
 // }
 
+static int	put_color(const t_fdf *fdf, const t_point_3d *p)
+{
+	float	ratio;
+	int		color;
+
+	if (fdf->is_grad_on && fdf->height_max - fdf->height_min != 0)
+	{
+		ratio = p->z / (fdf->height_max - fdf->height_min);
+		color = (RED_HIGH - RED_LOW) * ratio + RED_LOW;
+		color <<= 16;
+		color |= (int)((BLUE_HIGH - BLUE_LOW) * ratio) + BLUE_LOW;
+		return (color);
+	}
+	return (p->color);
+}
+
 void	isometric(t_fdf *fdf)
 {
 	int			i;
@@ -66,7 +82,7 @@ void	isometric(t_fdf *fdf)
 			fdf->matrix_2d[i][j].y
 				= (p.x + p.y) * SIN_PI_6 + fdf->shift_y - p.z
 				* fdf->height_scale;
-			fdf->matrix_2d[i][j].color = fdf->matrix_3d[i][j].color;
+			fdf->matrix_2d[i][j].color = put_color(fdf, &fdf->matrix_3d[i][j]);
 		}
 	}
 }
@@ -89,12 +105,12 @@ void	spheric(t_fdf *fdf)
 			rotate_point_local(fdf, &p);
 			p.x = (p.x + fdf->shift3d_x) * fdf->zoom;
 			p.y = (p.y + fdf->shift3d_y) * fdf->zoom;
-			rotate_point_global(fdf, &p);	// вращение вокруг центра экрана
+			rotate_point_global(fdf, &p);
 			p.x = p.x * ((fdf->radius + p.z) / fdf->radius);
 			p.y = p.y * ((fdf->radius + p.z) / fdf->radius);
 			fdf->matrix_2d[i][j].x = p.x + fdf->shift_x;
 			fdf->matrix_2d[i][j].y = p.y + fdf->shift_y;
-			fdf->matrix_2d[i][j].color = fdf->matrix_3d[i][j].color;
+			fdf->matrix_2d[i][j].color = put_color(fdf, &fdf->matrix_3d[i][j]);
 		}
 	}
 }

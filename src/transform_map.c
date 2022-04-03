@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:59 by nick              #+#    #+#             */
-/*   Updated: 2022/04/03 01:00:57 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/03 13:59:00 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	increase_map_height(t_fdf *fdf, float value)
 
 void	rotate_map(t_fdf *fdf, float value)
 {
-	if (fdf->rotation_center == GLOABAL)
+	if (fdf->rot_center == GLOABAL)
 		fdf->angle_z_global += value;
 	else
 		fdf->angle_z_local += value;

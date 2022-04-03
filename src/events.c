@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:42:21 by nick              #+#    #+#             */
-/*   Updated: 2022/04/03 00:19:43 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/03 13:59:01 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,22 @@ static void	shift_spheric(int keycode, t_fdf *fdf)
 
 int	key_press(int keycode, t_fdf *fdf)
 {
-	if (fdf->projection == ISOMETRIC)
+	if (fdf->proj == ISOMETRIC)
 		shift_isometric(keycode, fdf);
-	else if (fdf->projection == SPHERIC)
+	else if (fdf->proj == SPHERIC)
 		shift_spheric(keycode, fdf);
-	if (keycode == KEY_P && fdf->projection == ISOMETRIC)
-		fdf->projection = SPHERIC;
-	else if (keycode == KEY_P && fdf->projection == SPHERIC)
-		fdf->projection = ISOMETRIC;
+	if (keycode == KEY_P && fdf->proj == ISOMETRIC)
+		fdf->proj = SPHERIC;
+	else if (keycode == KEY_P && fdf->proj == SPHERIC)
+		fdf->proj = ISOMETRIC;
 	else if (keycode == KEY_PLUS || keycode == KEY_NUM_PLUS)
 		increase_map_height(fdf, 7);
 	else if (keycode == KEY_MINUS || keycode == KEY_NUM_MINUS)
 		increase_map_height(fdf, -7);
-	else if (keycode == KEY_C && fdf->rotation_center == GLOABAL)
-		fdf->rotation_center = LOCAL;
-	else if (keycode == KEY_C && fdf->rotation_center == LOCAL)
-		fdf->rotation_center = GLOABAL;
+	else if (keycode == KEY_C && fdf->rot_center == GLOABAL)
+		fdf->rot_center = LOCAL;
+	else if (keycode == KEY_C && fdf->rot_center == LOCAL)
+		fdf->rot_center = GLOABAL;
 	// printf("%d\n", keycode);
 }
 
@@ -94,12 +94,12 @@ void	set_delta_movement(
 
 	dx1 = p->x - fdf->last_cursor_click_x;
 	dy1 = p->y - fdf->last_cursor_click_y;
-	if (fdf->projection == ISOMETRIC)
+	if (fdf->proj == ISOMETRIC)
 	{
 		*dx = 0.577354 * dx1 + dy1;
 		*dy = -0.577354 * dx1 + dy1;
 	}
-	else if (fdf->projection == SPHERIC)
+	else if (fdf->proj == SPHERIC)
 	{
 		*dx = dx1;
 		*dy = dy1;
