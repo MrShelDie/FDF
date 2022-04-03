@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 01:31:59 by nick              #+#    #+#             */
-/*   Updated: 2022/04/03 13:42:14 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/03 16:37:24 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	render(t_fdf *fdf)
 {
 	t_image	img;
 
+	if (!fdf->win_ptr)
+		return ;
 	img.img_ptr = mlx_new_image(fdf->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	if (!img.img_ptr)
 		return ;

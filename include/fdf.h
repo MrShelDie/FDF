@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:59:50 by nick              #+#    #+#             */
-/*   Updated: 2022/04/03 15:50:39 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/03 16:26:15 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@
 # define KEY_P 112
 # define KEY_C 99
 # define KEY_G 103
+# define KEY_ESC 65307
 # define KEY_PLUS 61
 # define KEY_MINUS 45
 # define KEY_NUM_PLUS 65451

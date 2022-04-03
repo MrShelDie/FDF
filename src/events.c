@@ -6,15 +6,23 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:42:21 by nick              #+#    #+#             */
-/*   Updated: 2022/04/03 15:55:19 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/03 16:45:22 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdlib.h>
 #include "libft.h"
 
+#include "mlx.h"
 #include "fdf.h"
 #include "render.h"
+
+int	ev_close(t_fdf *fdf)
+{
+	mlx_destroy_window(fdf->mlx_ptr, fdf->win_ptr);
+	fdf->win_ptr = NULL;
+}
 
 static void	shift_isometric(int keycode, t_fdf *fdf)
 {
@@ -40,7 +48,7 @@ static void	shift_spheric(int keycode, t_fdf *fdf)
 		shift_map(fdf, SHIFT_VALUE, 0);
 }
 
-int	key_press(int keycode, t_fdf *fdf)
+int	ev_key_press(int keycode, t_fdf *fdf)
 {
 	if (fdf->proj == ISOMETRIC)
 		shift_isometric(keycode, fdf);
@@ -60,10 +68,12 @@ int	key_press(int keycode, t_fdf *fdf)
 		fdf->rot_center = GLOABAL;
 	else if (keycode == KEY_G)
 		fdf->is_grad_on = !fdf->is_grad_on;
+	else if (keycode == KEY_ESC)
+		ev_close(fdf);
 	// printf("%d\n", keycode);
 }
 
-int	button_press(int button, int x, int y, t_fdf *fdf)
+int	ev_button_press(int button, int x, int y, t_fdf *fdf)
 {
 	if (button == BTN_UP)
 		scale_map(fdf, ZOOM_IN_VALUE);
@@ -82,13 +92,13 @@ int	button_press(int button, int x, int y, t_fdf *fdf)
 	}
 }
 
-int	button_release(int button, int x, int y, t_fdf *fdf)
+int	ev_button_release(int button, int x, int y, t_fdf *fdf)
 {
 	if (button == fdf->pressed_mouse_btn)
 		fdf->pressed_mouse_btn = NONE;
 }
 
-void	set_delta_movement(
+static void set_delta_movement(
 	const t_fdf *fdf, const t_point_2d *p, int *dx, int *dy)
 {
 	int	dx1;
@@ -108,7 +118,7 @@ void	set_delta_movement(
 	}
 }
 
-int	mouse_movement(int x, int y, t_fdf *fdf)
+int	ev_mouse_movement(int x, int y, t_fdf *fdf)
 {
 	int			dx;
 	int			dy;
@@ -131,7 +141,7 @@ int	mouse_movement(int x, int y, t_fdf *fdf)
 		increase_map_height(fdf, -dy);
 }
 
-int	loop_hook(void *param)
+int	ev_loop_hook(void *param)
 {
 	render(param);
 }
