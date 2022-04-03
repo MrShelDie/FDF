@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:48:51 by nick              #+#    #+#             */
-/*   Updated: 2022/04/03 14:22:27 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/03 17:20:29 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	put_color(const t_fdf *fdf, const t_point_3d *p)
 	float	ratio;
 	int		color;
 
-	if (fdf->is_grad_on && fdf->height_max - fdf->height_min != 0)
+	if (fdf->is_height_map && fdf->height_max - fdf->height_min != 0)
 	{
 		ratio = p->z / (fdf->height_max - fdf->height_min);
 		color = (RED_HIGH - RED_LOW) * ratio + RED_LOW;

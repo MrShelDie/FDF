@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:24:33 by nick              #+#    #+#             */
-/*   Updated: 2022/04/03 16:46:59 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/03 17:20:12 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,14 @@ static int	fdf_init(t_fdf *fdf, const char *file_name)
 	fdf->shift3d_y = 0;
 	fdf->angle_z_global = 0;
 	fdf->angle_z_local = 0;
-	fdf->height_scale = 0.5;
+	fdf->height_scale = 0.3;
 	fdf->pressed_mouse_btn = NONE;
 	fdf->zoom = 1;
 	fdf->radius = WIN_HEIGHT;
 	fdf->proj = ISOMETRIC;
 	fdf->rot_center = LOCAL;
 	fdf->is_grad_on = false;
+	fdf->is_height_map = false;
 }
 
 static void	delay(int iter_nb)
@@ -98,7 +99,7 @@ int	main(int argc, char **argv)
 	delay(INIT_DELAY);
 	init_events(&fdf);
 	mlx_do_key_autorepeaton(fdf.mlx_ptr);
-	mlx_do_sync(fdf.mlx_ptr);
+	// mlx_do_sync(fdf.mlx_ptr);
 	render(&fdf);
 	mlx_loop(fdf.mlx_ptr);
 	free_matrix_3d(fdf.matrix_3d, fdf.map_height);

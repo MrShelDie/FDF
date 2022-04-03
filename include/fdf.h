@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:59:50 by nick              #+#    #+#             */
-/*   Updated: 2022/04/03 16:26:15 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/03 17:21:51 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@
 # define KEY_P 112
 # define KEY_C 99
 # define KEY_G 103
+# define KEY_H 104
 # define KEY_ESC 65307
 # define KEY_PLUS 61
 # define KEY_MINUS 45
@@ -127,6 +128,7 @@ typedef struct s_fdf
 	t_proj			proj;
 	t_rot_center	rot_center;
 	bool			is_grad_on;
+	bool			is_height_map;
 }	t_fdf;
 
 t_point_3d	**alloc_matrix_3d(int height, int width);

@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 12:35:49 by nick              #+#    #+#             */
-/*   Updated: 2022/04/03 15:43:14 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/03 17:20:43 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ static void	put_pixel(t_fdf *fdf, t_image *img, const t_point_2d *point)
 static void	interp_color(t_grad_prm *prm, t_point_2d *p)
 {
 	p->color = prm->red_a + prm->red_step * prm->curr_step;
-	p->color <<= 16;
+	p->color <<= 8;
+	p->color |= (int)(prm->green_a + prm->green_step * prm->curr_step);
+	p->color <<= 8;
 	p->color |= (int)(prm->blue_a + prm->blue_step * prm->curr_step);
 	prm->curr_step++;
 }
@@ -70,9 +72,11 @@ static void	interp_color(t_grad_prm *prm, t_point_2d *p)
 static void	init_grad_prm(
 	t_grad_prm *prm, int color_a, int color_b, float total_step)
 {
-	prm->red_a = (color_a >> 16) & 0xff;
+	prm->red_a = color_a >> 16 & 0xff;
+	prm->green_a = color_a >> 8 & 0xff;
 	prm->blue_a = color_a & 0xff;
 	prm->red_step = ((color_b >> 16 & 0xff) - prm->red_a) / total_step;
+	prm->green_step = ((color_b >> 8 & 0xff) - prm->green_a) / total_step;
 	prm->blue_step = ((color_b & 0xff) - prm->blue_a) / total_step;
 	prm->curr_step = 0;
 }

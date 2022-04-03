@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:42:21 by nick              #+#    #+#             */
-/*   Updated: 2022/04/03 16:45:22 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/03 17:23:15 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ int	ev_key_press(int keycode, t_fdf *fdf)
 		fdf->rot_center = GLOABAL;
 	else if (keycode == KEY_G)
 		fdf->is_grad_on = !fdf->is_grad_on;
+	else if (keycode == KEY_H)
+		fdf->is_height_map = !fdf->is_height_map;
 	else if (keycode == KEY_ESC)
 		ev_close(fdf);
 	// printf("%d\n", keycode);

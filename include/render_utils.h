@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 10:58:57 by nick              #+#    #+#             */
-/*   Updated: 2022/04/03 15:20:51 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/03 17:09:47 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,11 @@ typedef struct s_image
 typedef struct s_grad_prm
 {
 	int		red_a;
+	int		green_a;
 	int		blue_a;
 	int		curr_step;
 	float	red_step;
+	float	green_step;
 	float	blue_step;
 }	t_grad_prm;
 
