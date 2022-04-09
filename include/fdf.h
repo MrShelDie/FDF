@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:59:50 by nick              #+#    #+#             */
-/*   Updated: 2022/04/03 17:21:51 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/09 20:06:52 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@
 # define KEY_ESC 65307
 # define KEY_PLUS 61
 # define KEY_MINUS 45
+# define SQUARE_BRACKET 91
+# define SQUARE_BACK_BRACKET 93
 # define KEY_NUM_PLUS 65451
 # define KEY_NUM_MINUS 65453
 
@@ -94,9 +96,9 @@ typedef struct s_point_3d
 
 typedef struct s_point_2d
 {
-	float	x;
-	float	y;
-	int		color;
+	int	x;
+	int	y;
+	int	color;
 }	t_point_2d;
 
 typedef struct s_fdf
@@ -139,6 +141,7 @@ void		free_matrix_2d(t_point_2d **matrix_2d, int height);
 void		scale_map(t_fdf *fdf, float scale);
 void		shift_map(t_fdf *fdf, int x, int y);
 void		rotate_map(t_fdf *fdf, float value);
+void		scale_radius(t_fdf *fdf, float value);
 void		increase_map_height(t_fdf *fdf, float value);
 
 #endif

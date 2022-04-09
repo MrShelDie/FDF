@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:59 by nick              #+#    #+#             */
-/*   Updated: 2022/04/03 16:46:29 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/09 20:49:07 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,10 @@ void	rotate_map(t_fdf *fdf, float value)
 		fdf->angle_z_global += value;
 	else
 		fdf->angle_z_local += value;
+}
+
+void	scale_radius(t_fdf *fdf, float value)
+{
+	if (fdf->radius + value > fdf->height_max && fdf->radius + value < 10000)
+		fdf->radius += value;
 }

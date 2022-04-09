@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:42:21 by nick              #+#    #+#             */
-/*   Updated: 2022/04/03 17:23:15 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/09 20:06:42 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,10 @@ int	ev_key_press(int keycode, t_fdf *fdf)
 		fdf->is_grad_on = !fdf->is_grad_on;
 	else if (keycode == KEY_H)
 		fdf->is_height_map = !fdf->is_height_map;
+	else if (keycode == SQUARE_BACK_BRACKET)
+		scale_radius(fdf, -5);
+	else if (keycode == SQUARE_BRACKET)
+		scale_radius(fdf, 5);
 	else if (keycode == KEY_ESC)
 		ev_close(fdf);
 	// printf("%d\n", keycode);
