@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:24:33 by nick              #+#    #+#             */
-/*   Updated: 2022/04/10 17:17:16 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/10 22:21:36 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,15 @@ int	main(int argc, char **argv)
 	t_fdf	fdf;
 
 	if (!check_args(argc, argv))
+	{
+		ft_putstr_fd("Invalid argument\n", 1);
 		return (0);
+	}
 	if (!fdf_init(&fdf, argv[1]))
+	{
+		ft_putstr_fd("Map parse error\n", 1);
 		return (0);
+	}
 	shift_map(&fdf, -fdf.map_width / 2, -fdf.map_height / 2);
 	scale_map(&fdf, WIN_HEIGHT / fdf.map_width * 0.8);
 	init_events(&fdf);

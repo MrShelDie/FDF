@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:59:50 by nick              #+#    #+#             */
-/*   Updated: 2022/04/10 16:14:55 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/10 17:44:00 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # define ERROR 0
 
 # define UNDEF_COLOR 0xffffffff
-# define WIN_HEIGHT 720
-# define WIN_WIDTH 1280
+# define WIN_HEIGHT 1080
+# define WIN_WIDTH 1920
 
 # define RED_HIGH 185
 # define BLUE_HIGH 0

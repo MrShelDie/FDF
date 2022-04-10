@@ -30,6 +30,8 @@ LDFLAGS		= $(MLX) -lmlx -lXext -lX11 -lm
 
 all:		$(NAME)
 
+bonus:		$(NAME)
+
 $(NAME):	$(OBJ)
 	@make -C $(LIBFTDIR) all
 	$(CC) $(CFLAGS) $(OBJ) $(LDFLAGS) $(LIB) -o $@ 
