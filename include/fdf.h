@@ -6,15 +6,12 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:59:50 by nick              #+#    #+#             */
-/*   Updated: 2022/04/10 11:58:13 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/10 16:14:55 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-
-# define TRUE 1
-# define FALSE 0
 
 # define SUCCESS 1
 # define ERROR 0
@@ -28,15 +25,8 @@
 # define RED_LOW 42
 # define BLUE_LOW 156
 
-# define RED_MASK 0xff0000
-# define BLUE_MASK 0xff
-
 # define COS_PI_3 0.866025f
 # define SIN_PI_6 0.5f
-
-# define INIT_DELAY 1000000000
-
-# define MOUSE_SENSIVITY 0.5f
 
 # define SHIFT_VALUE 8
 # define ZOOM_IN_VALUE 1.05f

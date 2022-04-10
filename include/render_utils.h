@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 10:58:57 by nick              #+#    #+#             */
-/*   Updated: 2022/04/10 11:55:36 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/10 16:49:30 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,24 @@ typedef struct s_grad_prm
 	float	blue_step;
 }	t_grad_prm;
 
+typedef struct s_draw_prm
+{
+	int	dx;
+	int	dy;
+	int	sign_x;
+	int	sign_y;
+	int	error;
+	int	error2;
+}	t_draw_prm;
+
+void	init_draw_prm(t_draw_prm *prm, t_point_2d a, t_point_2d b);
+void	init_grad_prm(t_grad_prm *prm, t_point_2d a, t_point_2d b);
+
 void	draw_line(t_fdf *fdf, t_image *img, t_point_2d a, t_point_2d b);
 
 void	isometric(t_fdf *fdf);
 void	spheric(t_fdf *fdf);
 
-void	rotate_point_screen_center(const t_fdf *fdf, t_point_3d *p);
+void	transform_point(const t_fdf *fdf, t_point_3d *p);
 
 #endif

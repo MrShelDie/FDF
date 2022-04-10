@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 15:05:36 by gannemar          #+#    #+#             */
-/*   Updated: 2022/03/04 23:23:53 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/10 14:44:59 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static char	*list_to_str(t_gnl_list *list, t_result *res)
 	return (res->arr);
 }
 
-char	*get_next_line(int fd, int is_new_file)
+char	*get_next_line(int fd, bool is_new_file)
 {
 	static t_buff	buffs[OPEN_MAX];
 	t_gnl_list		*list;

@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 22:36:32 by nick              #+#    #+#             */
-/*   Updated: 2022/03/07 10:46:21 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/10 15:44:28 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	is_color(const char *token)
 	int	i;
 
 	if (ft_strncmp(token, "0x", 2) != 0 && ft_strncmp(token, "0X", 2) != 0)
-		return (FALSE);
+		return (false);
 	i = 2;
 	while (token[i] && token[i] != '\n')
 	{
@@ -45,7 +45,7 @@ static int	is_number(const char *token)
 	error = 0;
 	ft_atoi(token, &error);
 	if (error)
-		return (FALSE);
+		return (false);
 	i = 0;
 	if (token[0] == '-')
 		i++;
@@ -56,10 +56,10 @@ static int	is_number(const char *token)
 		i++;
 	}
 	if (!token[i] || token[i] == '\n')
-		return (TRUE);
+		return (true);
 	if (token[i] == ',' && is_color(&token[i + 1]))
-		return (TRUE);
-	return (FALSE);
+		return (true);
+	return (false);
 }
 
 int	check_line(int fd, int row_nb, int width)
@@ -73,14 +73,14 @@ int	check_line(int fd, int row_nb, int width)
 	is_first_row = row_nb == 0;
 	line = get_next_line(fd, is_first_row);
 	tokens = ft_split(line, ' ');
-	was_not_number_met = FALSE;
+	was_not_number_met = false;
+	col_nb = 0;
 	if (tokens)
 	{
-		col_nb = 0;
 		while (tokens[col_nb] && tokens[col_nb][0] != '\n')
 		{
 			if (!is_number(tokens[col_nb]))
-				was_not_number_met = TRUE;
+				was_not_number_met = true;
 			col_nb++;
 		}	
 	}

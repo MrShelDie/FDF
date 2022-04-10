@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 21:48:12 by nick              #+#    #+#             */
-/*   Updated: 2022/04/10 11:58:20 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/10 14:33:13 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,5 @@ int	ev_key_press(int keycode, t_fdf *fdf)
 		increase_radius(fdf, 5);
 	else if (keycode == KEY_ESC)
 		ev_close(fdf);
+	return (0);
 }

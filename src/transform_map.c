@@ -6,17 +6,13 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:59 by nick              #+#    #+#             */
-/*   Updated: 2022/04/10 11:58:09 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/10 16:46:42 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-#include <limits.h>
 
 #include "fdf.h"
-
-
-#include <stdio.h>
 
 void	scale_map(t_fdf *fdf, float scale)
 {

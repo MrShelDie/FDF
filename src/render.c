@@ -6,13 +6,9 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 01:31:59 by nick              #+#    #+#             */
-/*   Updated: 2022/04/10 12:36:39 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/10 16:41:51 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// TODO DELETE
-#include <sys/time.h>
-#include <stdio.h>
 
 #include "mlx.h"
 #include "fdf.h"

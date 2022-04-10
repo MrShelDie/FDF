@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 19:42:21 by nick              #+#    #+#             */
-/*   Updated: 2022/04/09 21:59:45 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/10 17:14:43 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,11 @@ int	ev_close(t_fdf *fdf)
 {
 	mlx_destroy_window(fdf->mlx_ptr, fdf->win_ptr);
 	fdf->win_ptr = NULL;
+	return (0);
 }
 
-int	ev_loop_hook(void *param)
+int	ev_loop_hook(t_fdf *fdf)
 {
-	render(param);
+	render(fdf);
+	return (0);
 }

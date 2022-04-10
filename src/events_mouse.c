@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 21:53:36 by nick              #+#    #+#             */
-/*   Updated: 2022/04/10 02:15:10 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/10 15:33:26 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,16 @@ int	ev_button_press(int button, int x, int y, t_fdf *fdf)
 		fdf->last_cursor_click_x = x;
 		fdf->last_cursor_click_y = y;
 	}
+	return (0);
 }
 
 int	ev_button_release(int button, int x, int y, t_fdf *fdf)
 {
-	if (button == fdf->pressed_mouse_btn)
+	(void)x;
+	(void)y;
+	if (button == (int)fdf->pressed_mouse_btn)
 		fdf->pressed_mouse_btn = NONE;
+	return (0);
 }
 
 static void	set_delta_movement(
@@ -50,7 +54,7 @@ static void	set_delta_movement(
 		*dx = 0.577354 * dx1 + dy1;
 		*dy = -0.577354 * dx1 + dy1;
 	}
-	else if (fdf->proj == SPHERIC)
+	else
 	{
 		*dx = dx1;
 		*dy = dy1;
@@ -78,4 +82,5 @@ int	ev_mouse_movement(int x, int y, t_fdf *fdf)
 		rotate_map(fdf, -dx / 200.0);
 	else if (fdf->pressed_mouse_btn == RCM)
 		increase_map_height(fdf, -dy);
+	return (0);
 }

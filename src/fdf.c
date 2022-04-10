@@ -6,18 +6,18 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:24:33 by nick              #+#    #+#             */
-/*   Updated: 2022/04/10 12:03:13 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/10 17:17:16 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <X11/X.h>
+#include <stdlib.h>
 #include <limits.h>
 
 #include "mlx.h"
 #include "fdf.h"
 #include "libft.h"
 #include "parser.h"
-#include "render.h"
 #include "events.h"
 
 static int	check_args(int argc, char **argv)
@@ -61,12 +61,14 @@ static int	fdf_init(t_fdf *fdf, const char *file_name)
 	if (!fdf->mlx_ptr)
 	{
 		free_matrix_3d(fdf->matrix_3d, fdf->map_height);
+		free_matrix_2d(fdf->matrix_2d, fdf->map_height);
 		return (ERROR);
 	}
 	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "FDF");
 	if (!fdf->win_ptr)
 	{
 		free_matrix_3d(fdf->matrix_3d, fdf->map_height);
+		free_matrix_2d(fdf->matrix_2d, fdf->map_height);
 		return (ERROR);
 	}
 	fdf_init_param(fdf);
@@ -99,5 +101,8 @@ int	main(int argc, char **argv)
 	mlx_do_key_autorepeaton(fdf.mlx_ptr);
 	mlx_loop(fdf.mlx_ptr);
 	free_matrix_3d(fdf.matrix_3d, fdf.map_height);
+	free_matrix_2d(fdf.matrix_2d, fdf.map_height);
+	mlx_destroy_display(fdf.mlx_ptr);
+	free(fdf.mlx_ptr);
 	return (0);
 }

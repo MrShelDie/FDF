@@ -6,12 +6,10 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:46:55 by nick              #+#    #+#             */
-/*   Updated: 2022/04/09 21:57:46 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/10 15:45:58 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include <unistd.h>
 #include <stdlib.h>
 
 #include "fdf.h"
@@ -67,9 +65,9 @@ int	fill_line(t_fdf *fdf, int width, int fd, int row_nb)
 	char	**tokens;
 
 	if (row_nb == 0)
-		line = get_next_line(fd, TRUE);
+		line = get_next_line(fd, true);
 	else
-		line = get_next_line(fd, FALSE);
+		line = get_next_line(fd, false);
 	tokens = ft_split(line, ' ');
 	if (!tokens)
 	{

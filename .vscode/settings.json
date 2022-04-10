@@ -19,6 +19,8 @@
 		"source_location": "c",
 		"xlib.h": "c",
 		"x.h": "c",
-		"limits.h": "c"
+		"limits.h": "c",
+		"get_next_line_utils.h": "c",
+		"render_utils.h": "c"
 	}
 }
