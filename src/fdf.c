@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:24:33 by nick              #+#    #+#             */
-/*   Updated: 2022/04/09 20:23:02 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/10 12:03:13 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,23 @@ static int	check_args(int argc, char **argv)
 	return (SUCCESS);
 }
 
+static void	fdf_init_param(t_fdf *fdf)
+{
+	fdf->shift_x = WIN_WIDTH / 2;
+	fdf->shift_y = WIN_HEIGHT / 2;
+	fdf->shift3d_x = 0;
+	fdf->shift3d_y = 0;
+	fdf->angle_z = 0;
+	fdf->height_scale = 0.1;
+	fdf->pressed_mouse_btn = NONE;
+	fdf->zoom = 1;
+	fdf->radius = 400;
+	fdf->proj = ISOMETRIC;
+	fdf->rot_center = LOCAL;
+	fdf->is_grad_on = false;
+	fdf->is_height_map = false;
+}
+
 static int	fdf_init(t_fdf *fdf, const char *file_name)
 {
 	fdf->height_max = INT_MIN;
@@ -52,26 +69,8 @@ static int	fdf_init(t_fdf *fdf, const char *file_name)
 		free_matrix_3d(fdf->matrix_3d, fdf->map_height);
 		return (ERROR);
 	}
-	fdf->shift_x = WIN_WIDTH / 2;
-	fdf->shift_y = WIN_HEIGHT / 2;
-	fdf->shift3d_x = 0;
-	fdf->shift3d_y = 0;
-	fdf->angle_z_global = 0;
-	fdf->angle_z_local = 0;
-	fdf->height_scale = 0.1;
-	fdf->pressed_mouse_btn = NONE;
-	fdf->zoom = 1;
-	fdf->radius = WIN_HEIGHT;
-	fdf->proj = ISOMETRIC;
-	fdf->rot_center = LOCAL;
-	fdf->is_grad_on = false;
-	fdf->is_height_map = false;
-}
-
-static void	delay(int iter_nb)
-{
-	while (iter_nb-- > 0)
-		;
+	fdf_init_param(fdf);
+	return (SUCCESS);
 }
 
 static void	init_events(t_fdf *fdf)
@@ -96,10 +95,8 @@ int	main(int argc, char **argv)
 		return (0);
 	shift_map(&fdf, -fdf.map_width / 2, -fdf.map_height / 2);
 	scale_map(&fdf, WIN_HEIGHT / fdf.map_width * 0.8);
-	delay(INIT_DELAY);
 	init_events(&fdf);
 	mlx_do_key_autorepeaton(fdf.mlx_ptr);
-	render(&fdf);
 	mlx_loop(fdf.mlx_ptr);
 	free_matrix_3d(fdf.matrix_3d, fdf.map_height);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:48:51 by nick              #+#    #+#             */
-/*   Updated: 2022/04/09 19:48:05 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/10 11:55:10 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,7 @@ void	isometric(t_fdf *fdf)
 			p.x = fdf->matrix_3d[i][j].x;
 			p.y = fdf->matrix_3d[i][j].y;
 			p.z = fdf->matrix_3d[i][j].z;
-			rotate_point_local(fdf, &p);
-			p.x = (p.x + fdf->shift3d_x) * fdf->zoom;
-			p.y = (p.y + fdf->shift3d_y) * fdf->zoom;
-			rotate_point_global(fdf, &p);
+			rotate_point_screen_center(fdf, &p);
 			fdf->matrix_2d[i][j].x
 				= (p.x - p.y) * COS_PI_3 + fdf->shift_x;
 			fdf->matrix_2d[i][j].y
@@ -102,10 +99,7 @@ void	spheric(t_fdf *fdf)
 			p.x = fdf->matrix_3d[i][j].x;
 			p.y = fdf->matrix_3d[i][j].y;
 			p.z = fdf->matrix_3d[i][j].z;
-			rotate_point_local(fdf, &p);
-			p.x = (p.x + fdf->shift3d_x) * fdf->zoom;
-			p.y = (p.y + fdf->shift3d_y) * fdf->zoom;
-			rotate_point_global(fdf, &p);
+			rotate_point_screen_center(fdf, &p);
 			p.x = p.x * ((fdf->radius + p.z) / fdf->radius);
 			p.y = p.y * ((fdf->radius + p.z) / fdf->radius);
 			fdf->matrix_2d[i][j].x = p.x + fdf->shift_x;

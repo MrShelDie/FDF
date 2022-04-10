@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 20:37:59 by nick              #+#    #+#             */
-/*   Updated: 2022/04/09 20:49:07 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/10 11:58:09 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	scale_map(t_fdf *fdf, float scale)
 // The inverse rotation matrix is used
 void	shift_map(t_fdf *fdf, int dx, int dy)
 {
-	fdf->shift3d_x += (dx * cos(fdf->angle_z_global)
-			+ dy * sin(fdf->angle_z_global)) / fdf->zoom;
-	fdf->shift3d_y += (dx * -sin(fdf->angle_z_global)
-			+ dy * cos(fdf->angle_z_global)) / fdf->zoom;
+	fdf->shift3d_x += (dx * cos(fdf->angle_z)
+			+ dy * sin(fdf->angle_z)) / fdf->zoom;
+	fdf->shift3d_y += (dx * -sin(fdf->angle_z)
+			+ dy * cos(fdf->angle_z)) / fdf->zoom;
 }
 
 void	increase_map_height(t_fdf *fdf, float value)
@@ -40,13 +40,10 @@ void	increase_map_height(t_fdf *fdf, float value)
 
 void	rotate_map(t_fdf *fdf, float value)
 {
-	if (fdf->rot_center == GLOABAL)
-		fdf->angle_z_global += value;
-	else
-		fdf->angle_z_local += value;
+	fdf->angle_z += value;
 }
 
-void	scale_radius(t_fdf *fdf, float value)
+void	increase_radius(t_fdf *fdf, float value)
 {
 	if (fdf->radius + value > fdf->height_max && fdf->radius + value < 10000)
 		fdf->radius += value;

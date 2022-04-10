@@ -3,7 +3,7 @@ fdf.c				matrix.c			render.c				\
 render_utils.c		parser.c			parser_utils_check.c	\
 parser_utils_fill.c get_next_line.c		get_next_line_utils.c	\
 projection.c		transform_map.c		transform_point.c		\
-events.c
+events.c			events_key.c		events_mouse.c
 
 SRC			= $(addprefix src/, $(_SRC_))
 

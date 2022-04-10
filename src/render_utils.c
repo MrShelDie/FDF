@@ -6,7 +6,7 @@
 /*   By: nick <nick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 12:35:49 by nick              #+#    #+#             */
-/*   Updated: 2022/04/09 20:43:53 by nick             ###   ########.fr       */
+/*   Updated: 2022/04/09 22:44:08 by nick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static void	put_pixel(
 static void	init_grad_prm(
 	t_grad_prm *prm, t_point_2d *a, t_point_2d *b)
 {
-	int	total_step;
+	float	total_step;
 
 	if (abs(b->x - a->x) > abs(b->y - a->y))
 		total_step = abs(b->x - a->x);
