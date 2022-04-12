@@ -20,17 +20,18 @@ ft_lstclear.c	ft_lstiter.c		ft_lstmap.c
 OBJ			= ${SRC:.c=.o}
 OBJ_BONUS	= ${SRC_BONUS:.c=.o}
 
+DEP			= ${SRC:.c=.d}
+
 HEDR		= libft.h
 
 NAME		= libft.a
 
-CFLSGS		= -Wall -Werror -Wextra
+CC			= gcc
+CFLAGS		= -Wall -Werror -Wextra -O3
+CPPFLAGS	= -MMD
 
 INCL		= -I.
 
-
-%.o:	%.c ${HEDR}
-	gcc -c ${CFLSGS} ${INCL} $< -o $@
 all:	${NAME}
 
 ${NAME}:	${OBJ}
@@ -40,12 +41,13 @@ bonus: ${OBJ} ${OBJ_BONUS}
 	ar rcs ${NAME} ${OBJ} ${OBJ_BONUS}
 
 clean:
-	rm -f ${OBJ} ${OBJ_BONUS}
+	rm -f ${OBJ} ${OBJ_BONUS} $(DEP)
 
 fclean:	clean
 	rm -f ${NAME}
 
 re:	fclean all
 
-
 .PHONY: all bonus clean fclean
+
+-include $(DEP)

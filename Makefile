@@ -18,7 +18,7 @@ NAME		= fdf
 GNLDIR		= src/get_next_line
 PARSDIR		= src/parser
 LIBFTDIR	= lib/libft
-LIB			= lib/libft/libft.a
+LIBFT		= lib/libft/libft.a
 MLXDIR		= lib/minilibx-linux
 MLX			= lib/minilibx-linux/libmlx_Linux.a
 INCDIR		= include
@@ -28,16 +28,22 @@ CFLAGS		= -Wall -Werror -Wextra -O3
 CPPFLAGS	= -MMD -I./src -I./$(LIBFTDIR) -I./$(GNLDIR) -I./$(PARSDIR) -I./$(MLXDIR) -I./$(INCDIR) 
 LDFLAGS		= $(MLX) -lmlx -lXext -lX11 -lm
 
-all:		$(NAME)
+all:		$(LIBFT) $(MLX) $(NAME)
 
-bonus:		$(NAME)
+bonus:		all
+
+$(LIBFT):
+	@make -C $(LIBFTDIR) all
+
+$(MLX):
+	@make -C $(MLXDIR) all
 
 $(NAME):	$(OBJ)
-	@make -C $(LIBFTDIR) all
-	$(CC) $(CFLAGS) $(OBJ) $(LDFLAGS) $(LIB) -o $@ 
+	$(CC) $(CFLAGS) $(OBJ) $(LDFLAGS) $(LIBFT) -o $@ 
 
 clean:
 	@make -C $(LIBFTDIR) clean
+	@make -C $(MLXDIR) clean
 	$(RM) $(OBJ) $(DEP)
 
 fclean:		clean
@@ -46,6 +52,7 @@ fclean:		clean
 
 re:			fclean all
 	@make -C $(LIBFTDIR) re
+	@make -C $(MLXDIR) re
 
 .PHONY:		all clean fclean re
 
